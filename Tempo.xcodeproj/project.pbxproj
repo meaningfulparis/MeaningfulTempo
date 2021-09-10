@@ -13,6 +13,18 @@
 		DE7807CC26EA227E00FC5FAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* ContentView.swift */; };
 		DE7807CD26EA227E00FC5FAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE7807B826EA227E00FC5FAF /* Assets.xcassets */; };
 		DE7807CE26EA227E00FC5FAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE7807B826EA227E00FC5FAF /* Assets.xcassets */; };
+		DE7807DA26EA3F6000FC5FAF /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807D926EA3F6000FC5FAF /* Header.swift */; };
+		DE7807DD26EA3FEA00FC5FAF /* TempoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807DC26EA3FEA00FC5FAF /* TempoLink.swift */; };
+		DE7807E126EA43EF00FC5FAF /* Color_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E026EA43EF00FC5FAF /* Color_extension.swift */; };
+		DE7807E426EA44CA00FC5FAF /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E326EA44CA00FC5FAF /* RoundedCornerShape.swift */; };
+		DE7807E726EA466900FC5FAF /* SafeAreaInsetsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E626EA466900FC5FAF /* SafeAreaInsetsKey.swift */; };
+		DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E826EA47CB00FC5FAF /* TimerDisplay.swift */; };
+		DE7807EB26EA47F900FC5FAF /* TimerWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807EA26EA47F900FC5FAF /* TimerWheel.swift */; };
+		DE7807ED26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807EC26EA4A5E00FC5FAF /* TimeIndicator.swift */; };
+		DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807EC26EA4A5E00FC5FAF /* TimeIndicator.swift */; };
+		DE80A04126EB607600598DC6 /* TempoInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04026EB607600598DC6 /* TempoInterface.swift */; };
+		DE80A04326EB624A00598DC6 /* TempoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04226EB624A00598DC6 /* TempoButton.swift */; };
+		DE80A04526EB63AF00598DC6 /* ArcCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04426EB63AF00598DC6 /* ArcCircle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +36,18 @@
 		DE7807C526EA227E00FC5FAF /* Tempo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7807C726EA227E00FC5FAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE7807C826EA227E00FC5FAF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		DE7807D726EA229B00FC5FAF /* Tempo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tempo.entitlements; sourceTree = "<group>"; };
+		DE7807D926EA3F6000FC5FAF /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		DE7807DC26EA3FEA00FC5FAF /* TempoLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoLink.swift; sourceTree = "<group>"; };
+		DE7807E026EA43EF00FC5FAF /* Color_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color_extension.swift; sourceTree = "<group>"; };
+		DE7807E326EA44CA00FC5FAF /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
+		DE7807E626EA466900FC5FAF /* SafeAreaInsetsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaInsetsKey.swift; sourceTree = "<group>"; };
+		DE7807E826EA47CB00FC5FAF /* TimerDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDisplay.swift; sourceTree = "<group>"; };
+		DE7807EA26EA47F900FC5FAF /* TimerWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWheel.swift; sourceTree = "<group>"; };
+		DE7807EC26EA4A5E00FC5FAF /* TimeIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIndicator.swift; sourceTree = "<group>"; };
+		DE80A04026EB607600598DC6 /* TempoInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoInterface.swift; sourceTree = "<group>"; };
+		DE80A04226EB624A00598DC6 /* TempoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoButton.swift; sourceTree = "<group>"; };
+		DE80A04426EB63AF00598DC6 /* ArcCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcCircle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +71,7 @@
 		DE7807B026EA227D00FC5FAF = {
 			isa = PBXGroup;
 			children = (
+				DE7807D726EA229B00FC5FAF /* Tempo.entitlements */,
 				DE7807B526EA227D00FC5FAF /* Shared */,
 				DE7807BF26EA227E00FC5FAF /* iOS */,
 				DE7807C626EA227E00FC5FAF /* macOS */,
@@ -57,6 +82,9 @@
 		DE7807B526EA227D00FC5FAF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DE7807E526EA464900FC5FAF /* Utilitarians */,
+				DE7807DB26EA3FDA00FC5FAF /* Managers */,
+				DE7807D826EA3F5400FC5FAF /* Components */,
 				DE7807B626EA227D00FC5FAF /* TempoApp.swift */,
 				DE7807B726EA227D00FC5FAF /* ContentView.swift */,
 				DE7807B826EA227E00FC5FAF /* Assets.xcassets */,
@@ -88,6 +116,54 @@
 				DE7807C826EA227E00FC5FAF /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		DE7807D826EA3F5400FC5FAF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DE7807D926EA3F6000FC5FAF /* Header.swift */,
+				DE7807E826EA47CB00FC5FAF /* TimerDisplay.swift */,
+				DE7807EA26EA47F900FC5FAF /* TimerWheel.swift */,
+				DE80A04226EB624A00598DC6 /* TempoButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DE7807DB26EA3FDA00FC5FAF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				DE7807DC26EA3FEA00FC5FAF /* TempoLink.swift */,
+				DE80A04026EB607600598DC6 /* TempoInterface.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		DE7807DF26EA43E500FC5FAF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DE7807E026EA43EF00FC5FAF /* Color_extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DE7807E226EA44A700FC5FAF /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				DE7807E326EA44CA00FC5FAF /* RoundedCornerShape.swift */,
+				DE7807EC26EA4A5E00FC5FAF /* TimeIndicator.swift */,
+				DE80A04426EB63AF00598DC6 /* ArcCircle.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		DE7807E526EA464900FC5FAF /* Utilitarians */ = {
+			isa = PBXGroup;
+			children = (
+				DE7807DF26EA43E500FC5FAF /* Extensions */,
+				DE7807E226EA44A700FC5FAF /* Shapes */,
+				DE7807E626EA466900FC5FAF /* SafeAreaInsetsKey.swift */,
+			);
+			path = Utilitarians;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,7 +263,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE7807EB26EA47F900FC5FAF /* TimerWheel.swift in Sources */,
+				DE7807E726EA466900FC5FAF /* SafeAreaInsetsKey.swift in Sources */,
+				DE7807E126EA43EF00FC5FAF /* Color_extension.swift in Sources */,
+				DE80A04526EB63AF00598DC6 /* ArcCircle.swift in Sources */,
 				DE7807CB26EA227E00FC5FAF /* ContentView.swift in Sources */,
+				DE7807ED26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
+				DE7807E426EA44CA00FC5FAF /* RoundedCornerShape.swift in Sources */,
+				DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */,
+				DE80A04126EB607600598DC6 /* TempoInterface.swift in Sources */,
+				DE7807DD26EA3FEA00FC5FAF /* TempoLink.swift in Sources */,
+				DE80A04326EB624A00598DC6 /* TempoButton.swift in Sources */,
+				DE7807DA26EA3F6000FC5FAF /* Header.swift in Sources */,
 				DE7807C926EA227E00FC5FAF /* TempoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7807CC26EA227E00FC5FAF /* ContentView.swift in Sources */,
+				DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
 				DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,8 +408,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tempo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7WWSH9YFTX;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -332,6 +421,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.Tempo;
 				PRODUCT_NAME = Tempo;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -342,8 +432,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tempo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7WWSH9YFTX;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -354,6 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.Tempo;
 				PRODUCT_NAME = Tempo;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
