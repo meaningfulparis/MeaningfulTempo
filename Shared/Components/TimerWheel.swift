@@ -32,6 +32,9 @@ struct TimerWheel: View {
             }
         }
         private var _angle:Angle = .zero
+        var loading: Double = 0
+        let loadingAnimation = Animation.easeInOut(duration: 10).repeatForever()
+        
     }
     
     @EnvironmentObject var link:TempoLink
@@ -63,14 +66,17 @@ struct TimerWheel: View {
                             .opacity(link.isConnected ? 1 : 0)
                             .animation(.easeInOut(duration: 0.6))
                     }
+                    .frame(width: g.size.width - 48, height: g.size.width - 48)
                     TimeIndicator(.horizontal)
                 }
                 .frame(width: g.size.width - 48, height: g.size.width - 48)
                 TimeIndicator(.vertical)
             }
             .frame(width: g.size.width, height: g.size.width)
+            .rotationEffect(link.isConnected ? .zero : .radians(dial.loading * 2 * .pi))
             .gesture(rotationDragGesture(diameter: g.size.width))
         }
+        .onAppear { withAnimation(dial.loadingAnimation) { dial.loading = 1 } }
         .padding(.bottom, 40)
     }
     

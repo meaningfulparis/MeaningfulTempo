@@ -18,7 +18,7 @@ class TempoFinder {
     private let tempoHostName = "Tempo"
     
     init() {
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
             self.lookForTempo()
         }
     }
