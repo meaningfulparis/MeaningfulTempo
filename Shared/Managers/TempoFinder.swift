@@ -30,6 +30,8 @@ class TempoFinder {
                 delegate?.didFindTempo(ip: ip)
                 return
             }
+            delegate?.didFindTempo(ip: "192.168.1.34")
+            return
         }
         delegate?.tempoNotFound()
     }

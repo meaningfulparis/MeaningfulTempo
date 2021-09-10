@@ -12,13 +12,13 @@ struct TempoButton: View {
     @EnvironmentObject var link:TempoLink
     
     var shadowEnd: CGFloat {
-        guard let minutes = link.minutesDisplay else { return 1 }
+        guard let minutes = link.minutesDisplay else { return 0.33 }
         return CGFloat(minutes) / 60
     }
     
     var shadowColor: Color {
         guard link.isConnected else {
-            return Color.tSand
+            return Color.tBlue
         }
         return Color.tGold
     }
@@ -31,7 +31,7 @@ struct TempoButton: View {
             ArcCircle(start: 0, end: shadowEnd)
                 .stroke(shadowColor, lineWidth: 2)
             Circle()
-                .fill(Color.tWhite)
+                .fill(link.isConnected ? Color.tWhite : Color.tCream)
             Button(action: link.play, label: {
                 Image("PlayButton")
                     .resizable()
@@ -42,7 +42,7 @@ struct TempoButton: View {
             .disabled(!link.isConnected)
             .opacity(link.isConnected ? 1 : 0)
             .scaleEffect(link.isConnected ? 1 : 0.75)
-            .rotationEffect(link.isConnected ? .zero : Angle(radians: .pi * 0.25))
+            .rotationEffect(link.isConnected ? .zero : Angle(radians: .pi * -0.25))
         }
     }
     
