@@ -10,13 +10,6 @@ import SwiftUI
 struct TimerWheel: View {
     
     struct Dial {
-        
-        init(defaultValue: Double? = nil) {
-            if let val = defaultValue {
-                _angle = Angle(radians: val)
-            }
-        }
-        
         var angle: Angle {
             get { _angle }
             set {
@@ -34,12 +27,15 @@ struct TimerWheel: View {
         private var _angle:Angle = .zero
         var loading: Double = 0
         let loadingAnimation = Animation.easeInOut(duration: 10).repeatForever()
-        
+    }
+    
+    private var handleAngle: Angle {
+        return Angle(radians: link.isConnected ? Double(link.minutesDisplay ?? 0) / 30 * .pi : 0)
     }
     
     @EnvironmentObject var link:TempoLink
     
-    @State private var dial = Dial(defaultValue: .pi / 2)
+    @State private var dial = Dial()
     
     var body: some View {
         GeometryReader { g in
@@ -66,7 +62,7 @@ struct TimerWheel: View {
                             .background(Circle().fill(Color.tSoil))
                             .frame(width: 28, height: 28)
                             .transformEffect(.init(translationX: 0, y: (g.size.width - 128) / -2))
-                            .rotationEffect(.init(radians: link.isConnected ? dial.angle.radians : 0))
+                            .rotationEffect(handleAngle)
                             .opacity(link.isConnected ? 1 : 0)
                             .animation(.easeInOut(duration: 0.6))
                     }

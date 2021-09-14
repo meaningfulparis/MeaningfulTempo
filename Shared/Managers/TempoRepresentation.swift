@@ -9,11 +9,10 @@ import Foundation
 
 class TempoObjectRepresentation: TempoRepresentation {
     
-    func statusUpdate(_ result:Result<TempoInterface.Response.Status?, Error>) {
+    func statusUpdate(_ result:Result<TempoInterface.Response.Status, TempoInterface.InterfaceError>) {
         switch result {
         case .success(let resp):
             status = .Available
-            guard let resp = resp else { return }
             activity = Activity(rawValue: resp.activity) ?? .Waiting
             timerDuration = resp.timerDuration
             timerProgression = resp.timerProgression
@@ -28,7 +27,7 @@ class TempoObjectRepresentation: TempoRepresentation {
         }
     }
     
-    func classicUpdate(_ result:Result<TempoInterface.Response.Default?, Error>) {
+    func classicUpdate(_ result:Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
         switch result {
         case .success(let resp):
             print(resp)

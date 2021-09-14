@@ -15,7 +15,7 @@ protocol TempoFinderDelegate {
 class TempoFinder {
     
     var delegate:TempoFinderDelegate?
-    private let tempoHostName = "Tempo"
+    private let tempoHostName = "arduino-a570"
     
     init() {
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
@@ -24,14 +24,18 @@ class TempoFinder {
     }
     
     func lookForTempo() {
+        print("||| Look for tempo |||")
         for i in 0..<255 {
             let ip = "192.168.1.\(i)"
+            if let hostName = self.getHostName(ip), hostName != ip {
+                print("----> ", hostName)
+            }
             if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
                 delegate?.didFindTempo(ip: ip)
                 return
             }
-            delegate?.didFindTempo(ip: "192.168.1.34")
-            return
+//            delegate?.didFindTempo(ip: "192.168.1.34")
+//            return
         }
         delegate?.tempoNotFound()
     }

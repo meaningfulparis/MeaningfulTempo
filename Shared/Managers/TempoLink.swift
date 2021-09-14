@@ -16,7 +16,7 @@ class TempoLink: ObservableObject {
     private let finder = TempoFinder()
     private let digitalRepresentation = TempoDigitalRepresentation()
     private let objectRepresentation = TempoObjectRepresentation()
-    private lazy var interface = TempoInterface(representation: objectRepresentation)
+    private lazy var interface = TempoInterface(representation: digitalRepresentation)
     
     init() {
         finder.delegate = self
@@ -57,11 +57,20 @@ extension TempoLink : TempoFinderDelegate {
     
     func didFindTempo(ip:String) {
         digitalRepresentation.setUp(ip: ip)
-        objectRepresentation.setUp(ip: ip)
-        DispatchQueue.main.async {
-            withAnimation {
-                self.digitalRepresentation.timerDuration = 15
-                self.secondsDisplay = 0
+        interface.getObjectState { result in
+            switch result {
+            case .success(let status):
+                self.objectRepresentation.setUp(ip: ip)
+                DispatchQueue.main.async {
+                    withAnimation {
+                        self.digitalRepresentation.timerDuration = status.timerDuration
+                        self.secondsDisplay = 0
+                    }
+                }
+            case .failure(let error):
+                print("Fail : \(error.localizedDescription)")
+                self.digitalRepresentation.ip = nil
+                self.tempoNotFound()
             }
         }
     }
