@@ -25,6 +25,7 @@ class TempoLink: ObservableObject {
     func updateTimer(dialValue:Double) {
         let newTimerDuration = Int(dialValue / .pi * 30)
         guard newTimerDuration != digitalRepresentation.timerDuration else { return }
+        UIImpactFeedbackGenerator(style: newTimerDuration % 5 == 0 ? .heavy : .light).impactOccurred()
         digitalRepresentation.timerDuration = newTimerDuration
         secondsDisplay = 0
         interface.setTimer(duration: newTimerDuration, handler: objectRepresentation.classicUpdate)
