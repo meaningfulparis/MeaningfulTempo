@@ -23,24 +23,26 @@ class TempoLink: ObservableObject {
             return .Searching
         }
     }
-    var minutesDisplay: Int? { objectRepresentation.status == .Available ? digitalRepresentation.timerDuration : nil }
-    @Published var secondsDisplay:Int? = nil
+    var minutesDisplay: Int? {
+        return objectRepresentation.status == .Available ? Int(floor((digitalRepresentation.remainingTime ?? 0) / 60)) : nil
+    }
+    var secondsDisplay: Int? { objectRepresentation.status == .Available ? Int((digitalRepresentation.remainingTime ?? 0).truncatingRemainder(dividingBy: 60)) : nil }
     
     private let finder = TempoFinder()
     
-    @Published var digitalRepresentation = TempoDigitalRepresentation()
-    var digitalRepresentationCancellable:AnyCancellable? = nil
-    @Published var objectRepresentation = TempoObjectRepresentation()
+    @Published private var objectRepresentation = TempoObjectRepresentation()
     var objectRepresentationCancellable:AnyCancellable? = nil
+    @Published private var digitalRepresentation = TempoDigitalRepresentation()
+    var digitalRepresentationCancellable:AnyCancellable? = nil
     
     private lazy var interface = TempoInterface(digitalRepresentation: digitalRepresentation)
     
     init() {
         finder.delegate = self
-        digitalRepresentationCancellable = digitalRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
+        objectRepresentationCancellable = objectRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
             self?.objectWillChange.send()
         })
-        objectRepresentationCancellable = objectRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
+        digitalRepresentationCancellable = digitalRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
             self?.objectWillChange.send()
         })
     }
@@ -50,7 +52,6 @@ class TempoLink: ObservableObject {
         guard newTimerDuration != digitalRepresentation.timerDuration else { return }
         UIImpactFeedbackGenerator(style: newTimerDuration % 5 == 0 ? .heavy : .light).impactOccurred()
         digitalRepresentation.timerDuration = newTimerDuration
-        secondsDisplay = 0
         interface.setTimer(duration: newTimerDuration, handler: objectRepresentation.statusUpdate)
     }
     
@@ -89,17 +90,16 @@ extension TempoLink : TempoFinderDelegate {
         }
         interface.getObjectState { result in
             switch result {
-            case .success(let status):
+            case .success(_):
                 DispatchQueue.main.asyncWithAnimation {
                     self.objectRepresentation.setUp(ip: ip)
-                    self.digitalRepresentation.timerDuration = status.timerDuration
-                    self.secondsDisplay = 0
+                    self.objectRepresentation.statusUpdate(result)
+                    self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
                 }
             case .failure(let error):
                 print("Fail : \(error.localizedDescription)")
                 DispatchQueue.main.asyncWithAnimation {
-                    self.digitalRepresentation.ip = nil
-                    self.digitalRepresentation.status = .NotFound
+                    self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
                 }
                 self.tempoNotFound()
             }
