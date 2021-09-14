@@ -17,21 +17,25 @@ struct TempoButton: View {
     }
     
     var shadowColor: Color {
-        guard link.isConnected else {
+        switch link.connexionStatus {
+        case .Connected:
+            return Color.tGold
+        case .Connecting:
             return Color.tBlue
+        case .Searching:
+            return Color.tBlue.opacity(0.5)
         }
-        return Color.tGold
     }
     
     
     var body: some View {
         ZStack {
             ArcCircle(start: 0, end: shadowEnd)
-                .shadow(color: shadowColor.opacity(0.8), radius: 60, x: 0, y: 0)
+                .shadow(color: shadowColor.opacity(0.8), radius: link.connexionStatus == .Connecting ? 90 : 60, x: 0, y: 0)
             ArcCircle(start: 0, end: shadowEnd)
                 .stroke(shadowColor, lineWidth: 2)
             Circle()
-                .fill(link.isConnected ? Color.tWhite : Color.tCream)
+                .fill(link.connexionStatus == .Connected ? Color.tWhite : Color.tCream)
             Button(action: link.play, label: {
                 Image("PlayButton")
                     .resizable()
@@ -39,10 +43,10 @@ struct TempoButton: View {
                     .frame(width: 54, height: 54)
                     .padding(.all, 16)
             })
-            .disabled(!link.isConnected)
-            .opacity(link.isConnected ? 1 : 0)
-            .scaleEffect(link.isConnected ? 1 : 0.75)
-            .rotationEffect(link.isConnected ? .zero : Angle(radians: .pi * -0.25))
+            .disabled(link.connexionStatus != .Connected)
+            .opacity(link.connexionStatus == .Connected ? 1 : 0)
+            .scaleEffect(link.connexionStatus == .Connected ? 1 : 0.75)
+            .rotationEffect(link.connexionStatus == .Connected ? .zero : Angle(radians: .pi * -0.25))
         }
     }
     

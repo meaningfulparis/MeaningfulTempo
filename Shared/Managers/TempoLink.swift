@@ -9,13 +9,25 @@ import SwiftUI
 
 class TempoLink: ObservableObject {
     
-    var isConnected: Bool { objectRepresentation.status == .Available }
-    var minutesDisplay: Int? { digitalRepresentation.status == .Available ? digitalRepresentation.timerDuration : nil }
+    enum ConnexionStatus {
+        case Searching, Connecting, Connected
+    }
+    
+    var connexionStatus: ConnexionStatus {
+        if objectRepresentation.status == .Available {
+            return .Connected
+        } else if digitalRepresentation.status == .Available {
+            return .Connecting
+        } else {
+            return .Searching
+        }
+    }
+    var minutesDisplay: Int? { objectRepresentation.status == .Available ? digitalRepresentation.timerDuration : nil }
     @Published var secondsDisplay:Int? = nil
     
     private let finder = TempoFinder()
-    private let digitalRepresentation = TempoDigitalRepresentation()
-    private let objectRepresentation = TempoObjectRepresentation()
+    @Published private var digitalRepresentation = TempoDigitalRepresentation()
+    @Published private var objectRepresentation = TempoObjectRepresentation()
     private lazy var interface = TempoInterface(representation: digitalRepresentation)
     
     init() {
@@ -57,7 +69,11 @@ class TempoLink: ObservableObject {
 extension TempoLink : TempoFinderDelegate {
     
     func didFindTempo(ip:String) {
-        digitalRepresentation.setUp(ip: ip)
+        print("did find tempo")
+        DispatchQueue.main.async { withAnimation {
+            self.digitalRepresentation.setUp(ip: ip)
+            self.secondsDisplay = nil
+        }}
         interface.getObjectState { result in
             switch result {
             case .success(let status):
@@ -71,6 +87,10 @@ extension TempoLink : TempoFinderDelegate {
             case .failure(let error):
                 print("Fail : \(error.localizedDescription)")
                 self.digitalRepresentation.ip = nil
+                self.digitalRepresentation.status = .NotFound
+                DispatchQueue.main.async { withAnimation {
+                    self.secondsDisplay = nil
+                }}
                 self.tempoNotFound()
             }
         }

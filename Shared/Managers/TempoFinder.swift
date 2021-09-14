@@ -18,26 +18,26 @@ class TempoFinder {
     private let tempoHostName = "arduino-a570"
     
     init() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
-            self.lookForTempo()
-        }
+        lookForTempo()
     }
     
     func lookForTempo() {
-        print("||| Look for tempo |||")
-        for i in 0..<255 {
-            let ip = "192.168.1.\(i)"
-            if let hostName = self.getHostName(ip), hostName != ip {
-                print("----> ", hostName)
+        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + 2) {
+            print("||| Look for tempo |||")
+            for i in 0..<255 {
+                let ip = "192.168.1.\(i)"
+                if let hostName = self.getHostName(ip), hostName != ip {
+                    print("----> ", hostName)
+                }
+                if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
+                    self.delegate?.didFindTempo(ip: ip)
+                    return
+                }
+    //            delegate?.didFindTempo(ip: "192.168.1.34")
+    //            return
             }
-            if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
-                delegate?.didFindTempo(ip: ip)
-                return
-            }
-//            delegate?.didFindTempo(ip: "192.168.1.34")
-//            return
+            self.delegate?.tempoNotFound()
         }
-        delegate?.tempoNotFound()
     }
     
     private func getHostName(_ ipaddress: String) -> String? {

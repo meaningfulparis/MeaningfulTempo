@@ -30,7 +30,7 @@ struct TimerWheel: View {
     }
     
     private var handleAngle: Angle {
-        return Angle(radians: link.isConnected ? Double(link.minutesDisplay ?? 0) / 30 * .pi : 0)
+        return Angle(radians: link.connexionStatus == .Connected ? Double(link.minutesDisplay ?? 0) / 30 * .pi : 0)
     }
     
     @EnvironmentObject var link:TempoLink
@@ -41,20 +41,20 @@ struct TimerWheel: View {
         GeometryReader { g in
             VStack(alignment: .center, spacing: 8) {
                 TimeIndicator(.vertical)
-                    .opacity(link.isConnected ? 1 : 0)
+                    .opacity(link.connexionStatus != .Searching ? 1 : 0)
                 HStack(alignment: .center, spacing: 8) {
                     TimeIndicator(.horizontal)
-                        .opacity(link.isConnected ? 1 : 0)
+                        .opacity(link.connexionStatus != .Searching ? 1 : 0)
                     ZStack(alignment: .center) {
                         TempoButton()
                             .animation(.easeInOut(duration: 0.6))
-                            .scaleEffect(link.isConnected ? 1.0 : 0.8)
-                            .rotationEffect(link.isConnected ? .zero : .radians(dial.loading * 2 * .pi - .pi * 1/3))
+                            .scaleEffect(link.connexionStatus == .Connected ? 1.0 : 0.8)
+                            .rotationEffect(link.connexionStatus == .Connected ? .zero : .radians(dial.loading * 2 * .pi - .pi * 1/3))
                         ForEach(0..<12) { i in
                             TimeIndicator(.detail)
                                 .transformEffect(.init(translationX: 0, y: (g.size.width - 120) / -2))
                                 .rotationEffect(.init(degrees: Double(i * 30)))
-                                .opacity(link.isConnected ? 1 : 0)
+                                .opacity(link.connexionStatus == .Connected ? 1 : 0)
                                 .animation(.linear(duration: 0.1).delay(0.05 * Double(i)))
                         }
                         Circle()
@@ -63,22 +63,22 @@ struct TimerWheel: View {
                             .frame(width: 28, height: 28)
                             .transformEffect(.init(translationX: 0, y: (g.size.width - 128) / -2))
                             .rotationEffect(handleAngle)
-                            .opacity(link.isConnected ? 1 : 0)
+                            .opacity(link.connexionStatus == .Connected ? 1 : 0)
                             .animation(.easeInOut(duration: 0.6))
                     }
                     .frame(width: g.size.width - 48, height: g.size.width - 48)
                     TimeIndicator(.horizontal)
-                        .opacity(link.isConnected ? 1 : 0)
+                        .opacity(link.connexionStatus != .Searching ? 1 : 0)
                 }
                 .frame(width: g.size.width - 48, height: g.size.width - 48)
                 TimeIndicator(.vertical)
-                    .opacity(link.isConnected ? 1 : 0)
+                    .opacity(link.connexionStatus != .Searching ? 1 : 0)
             }
             .frame(width: g.size.width, height: g.size.width)
             .gesture(rotationDragGesture(diameter: g.size.width))
         }
-        .onAppear { withAnimation(dial.loadingAnimation) { dial.loading = 1 } }
         .padding(.bottom, 40)
+        .onAppear { withAnimation(dial.loadingAnimation) { dial.loading = 1 } }
     }
     
     private func rotationDragGesture(diameter: CGFloat) -> some Gesture {

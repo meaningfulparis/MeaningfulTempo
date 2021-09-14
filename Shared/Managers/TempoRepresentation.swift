@@ -33,6 +33,11 @@ class TempoObjectRepresentation: TempoRepresentation {
             print(resp)
             status = .Available
         case .failure(let error):
+            if status == .Lost {
+                status = .NotFound
+            } else {
+                status = .Lost
+            }
             print("Error : \(error.localizedDescription)")
         }
     }
