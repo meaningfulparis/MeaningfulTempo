@@ -12,11 +12,7 @@ class TempoInterface {
     struct Response {
         struct Default:Codable {
             let success:Bool
-            let device:String
-            let message:String
-        }
-        struct Status:Codable {
-            let activity:Int
+            let activity:TempoRepresentation.Activity
             let timerDuration:Int
             let timerProgression:Int
         }
@@ -27,17 +23,17 @@ class TempoInterface {
     }
     
     enum InterfaceError:Error {
-        case requestFailed, emptyAnswer, jsonDecodingFailed
+        case requestFailed, emptyAnswer, jsonDecodingFailed, unknownIP, URLInitializationFailed
     }
     
-    private let representation:TempoRepresentation
+    private let digitalRepresentation:TempoDigitalRepresentation
     private var scheduledRequests:[String:DispatchTime] = [:]
     
-    init(representation:TempoRepresentation) {
-        self.representation = representation
+    init(digitalRepresentation:TempoDigitalRepresentation) {
+        self.digitalRepresentation = digitalRepresentation
     }
     
-    func getObjectState(handler:@escaping (Result<Response.Status, InterfaceError>) -> Void) {
+    func getObjectState(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
         sendRequest(endpoint: "object-state", method: .GET, data: [], handler: handler)
     }
     
@@ -68,45 +64,50 @@ class TempoInterface {
     }
     
     private func sendRequest<T:Decodable>(endpoint:String, method:Method, data:[String], handler:@escaping (Result<T, InterfaceError>) -> Void) {
-        guard let ip = representation.ip else { return }
-        guard let url = URL(string: "http://\(ip):\(representation.port)/\(endpoint)/\(data.joined(separator: ":"))") else { return }
-        DispatchQueue.global(qos: .userInitiated).async {
-            var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = method.rawValue
-            print("request sent to \(url)")
-            URLSession.shared.dataTask(with: request) { data, resp, error in
-                if let error = error {
-                    print("Request error : \(error.localizedDescription)")
-                    handler(.failure(.requestFailed))
-                    return
-                }
-                guard let data = data else {
-                    handler(.failure(.emptyAnswer))
-                    return
-                }
-                do {
-                    let result = try JSONDecoder().decode(T.self, from: data)
-                    handler(.success(result))
-                    return
-                } catch DecodingError.dataCorrupted(let context) {
-                    print(context)
-                } catch DecodingError.keyNotFound(let key, let context) {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch DecodingError.valueNotFound(let value, let context) {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    print("error: ", error)
-                }
-                handler(.failure(.jsonDecodingFailed))
-                return
-            }.resume()
+        guard let ip = digitalRepresentation.ip else {
+            handler(.failure(.unknownIP))
+            return
         }
+        guard let url = URL(string: "http://\(ip):\(digitalRepresentation.port)/\(endpoint)/\(data.joined(separator: ":"))") else {
+            handler(.failure(.URLInitializationFailed))
+            return
+        }
+        print("-> \(url)")
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = method.rawValue
+        print("--> sent to \(url)")
+        URLSession.shared.dataTask(with: request) { data, resp, error in
+            if let error = error {
+                print("Request error : \(error.localizedDescription)")
+                handler(.failure(.requestFailed))
+                return
+            }
+            guard let data = data else {
+                handler(.failure(.emptyAnswer))
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(T.self, from: data)
+                handler(.success(result))
+                return
+            } catch DecodingError.dataCorrupted(let context) {
+                print(context)
+            } catch DecodingError.keyNotFound(let key, let context) {
+                print("Key '\(key)' not found:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch DecodingError.valueNotFound(let value, let context) {
+                print("Value '\(value)' not found:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                print("error: ", error)
+            }
+            handler(.failure(.jsonDecodingFailed))
+            return
+        }.resume()
     }
     
 }

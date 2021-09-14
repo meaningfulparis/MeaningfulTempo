@@ -9,29 +9,14 @@ import Foundation
 
 class TempoObjectRepresentation: TempoRepresentation {
     
-    func statusUpdate(_ result:Result<TempoInterface.Response.Status, TempoInterface.InterfaceError>) {
+    func statusUpdate(_ result:Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
         switch result {
         case .success(let resp):
             status = .Available
-            activity = Activity(rawValue: resp.activity) ?? .Waiting
+            activity = resp.activity
             timerDuration = resp.timerDuration
             timerProgression = resp.timerProgression
             print(resp)
-        case .failure(let error):
-            if status == .Lost {
-                status = .NotFound
-            } else {
-                status = .Lost
-            }
-            print("Error : \(error.localizedDescription)")
-        }
-    }
-    
-    func classicUpdate(_ result:Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
-        switch result {
-        case .success(let resp):
-            print(resp)
-            status = .Available
         case .failure(let error):
             if status == .Lost {
                 status = .NotFound
@@ -53,12 +38,15 @@ class TempoDigitalRepresentation: TempoRepresentation {
 class TempoRepresentation:ObservableObject {
     
     enum Status { case NotFound, Available, Lost }
-    enum Activity:Int { case Waiting, Running, Paused }
+    enum Activity:Int, Codable {
+        case Off, Waiting, Loading, Running, RunEnding, RunOffseting
+    }
     
-    @Published var status:Status = .NotFound
     let port:String = "8000"
     var ip:String? = nil
-    var activity:Activity = .Waiting
+    
+    @Published var status:Status = .NotFound
+    @Published var activity:Activity = .Waiting
     @Published var timerDuration:Int = 15
     @Published var timerProgression:Int = 0
     

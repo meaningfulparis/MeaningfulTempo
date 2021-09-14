@@ -10,10 +10,12 @@ import SwiftUI
 @main
 struct TempoApp: App {
     
+    @StateObject var link = TempoLink()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(TempoLink())
+                .environmentObject(link)
         }
     }
 }
