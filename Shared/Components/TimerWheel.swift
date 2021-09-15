@@ -81,7 +81,6 @@ struct TimerWheel: View {
             .frame(width: g.size.width, height: g.size.width)
             .gesture(rotationDragGesture(diameter: g.size.width))
         }
-        .padding(.bottom, 40)
         .onAppear { withAnimation(dial.loadingAnimation) { dial.loading = 1 } }
     }
     

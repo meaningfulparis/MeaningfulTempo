@@ -30,6 +30,10 @@ class TempoLink: ObservableObject {
         guard let remaining = digitalRepresentation.remainingTime else { return false }
         return remaining < 0
     }
+    var timerProgression: Double {
+        guard let remaining = digitalRepresentation.remainingTime else { return 0 }
+        return remaining / Double(digitalRepresentation.timerDuration * 60)
+    }
     var minutesDisplay: Int? {
         guard objectRepresentation.status == .Available else { return nil }
         switch objectRepresentation.viewMode {
@@ -84,21 +88,19 @@ class TempoLink: ObservableObject {
     
     func play() {
         print("Launch")
-        digitalRepresentation.timerStart = nil
-        digitalRepresentation.activity = .Loading
-        interface.launch(duration: digitalRepresentation.timerDuration) { result in
-            self.objectRepresentation.statusUpdate(result)
-            self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+        DispatchQueue.main.async {
+            self.digitalRepresentation.timerStart = nil
+            self.digitalRepresentation.activity = .Loading
         }
+        interface.launch(duration: digitalRepresentation.timerDuration, handler: animatedStatusUpdate)
     }
     
     func pause() {
         print("Stop")
-        digitalRepresentation.activity = .Waiting
-        interface.stop { result in
-            self.objectRepresentation.statusUpdate(result)
-            self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+        DispatchQueue.main.async {
+            self.digitalRepresentation.activity = .Waiting
         }
+        interface.stop(handler: animatedStatusUpdate)
 //        switch digitalRepresentation.activity {
 //        case .Running:
 //            print("Pause")
@@ -111,6 +113,13 @@ class TempoLink: ObservableObject {
 //        default:
 //            break
 //        }
+    }
+    
+    private func animatedStatusUpdate(result: Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
+        DispatchQueue.main.asyncWithAnimation {
+            self.objectRepresentation.statusUpdate(result)
+            self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+        }
     }
     
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE06083026F2395800BF3AFB /* SecondaryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE06082F26F2395800BF3AFB /* SecondaryAction.swift */; };
+		DE06083126F2395800BF3AFB /* SecondaryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE06082F26F2395800BF3AFB /* SecondaryAction.swift */; };
 		DE15AB3326EB738F00B6AB27 /* TempoLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807DC26EA3FEA00FC5FAF /* TempoLink.swift */; };
 		DE15AB3426EB73A300B6AB27 /* ArcCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04426EB63AF00598DC6 /* ArcCircle.swift */; };
 		DE15AB3526EB73A500B6AB27 /* TempoInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04026EB607600598DC6 /* TempoInterface.swift */; };
@@ -50,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE06082F26F2395800BF3AFB /* SecondaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAction.swift; sourceTree = "<group>"; };
 		DE7807B626EA227D00FC5FAF /* TempoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoApp.swift; sourceTree = "<group>"; };
 		DE7807B726EA227D00FC5FAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DE7807B826EA227E00FC5FAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 				DE7807E826EA47CB00FC5FAF /* TimerDisplay.swift */,
 				DE7807EA26EA47F900FC5FAF /* TimerWheel.swift */,
 				DE80A04226EB624A00598DC6 /* TempoButton.swift */,
+				DE06082F26F2395800BF3AFB /* SecondaryAction.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -319,6 +323,7 @@
 				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */,
+				DE06083026F2395800BF3AFB /* SecondaryAction.swift in Sources */,
 				DEFACEB526F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
 				DE80A04126EB607600598DC6 /* TempoInterface.swift in Sources */,
 				DE7807DD26EA3FEA00FC5FAF /* TempoLink.swift in Sources */,
@@ -343,6 +348,7 @@
 				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
+				DE06083126F2395800BF3AFB /* SecondaryAction.swift in Sources */,
 				DEFACEB626F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
 				DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */,
 				DE15AB3A26EB73C100B6AB27 /* SafeAreaInsetsKey.swift in Sources */,

@@ -13,7 +13,9 @@ struct ContentView: View {
             Header()
             TimerDisplay()
             TimerWheel()
+            SecondaryAction()
         }
+        .padding(.bottom, 40)
         .background(Color.tCream.edgesIgnoringSafeArea(.all))
     }
 }

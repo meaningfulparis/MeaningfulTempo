@@ -13,7 +13,14 @@ struct TempoButton: View {
     
     var shadowEnd: CGFloat {
         guard let minutes = link.minutesDisplay else { return 0.33 }
-        return CGFloat(minutes) / 60
+        switch link.viewMode {
+        case .Settings:
+            return CGFloat(minutes) / 60
+        case .RunningTimer:
+            return 1
+        case .PausedTimer:
+            return 1
+        }
     }
     
     var shadowColor: Color {
@@ -31,9 +38,12 @@ struct TempoButton: View {
     var body: some View {
         ZStack {
             ArcCircle(start: 0, end: shadowEnd)
+                .fill(Color.clear)
                 .shadow(color: shadowColor.opacity(0.8), radius: link.connexionStatus == .Connecting ? 90 : 60, x: 0, y: 0)
+                .transformEffect(.init(translationX: 0, y: link.viewMode == .Settings ? 0 : 40))
+                .opacity(link.viewMode == .RunningTimer ? 0.2 + abs(link.timerProgression * 0.8) : 1)
             ArcCircle(start: 0, end: shadowEnd)
-                .stroke(shadowColor, lineWidth: link.viewMode == .RunningTimer ? 4 : 2)
+                .stroke(shadowColor, lineWidth: link.viewMode == .RunningTimer ? 0 : 2)
             Circle()
                 .fill(link.connexionStatus == .Connected ? Color.tWhite : Color.tCream)
             Button(action: mainButtonAction, label: {
