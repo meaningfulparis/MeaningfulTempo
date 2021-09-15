@@ -25,6 +25,11 @@ class TempoLink: ObservableObject {
     }
     var viewMode: TempoDigitalRepresentation.ViewMode { digitalRepresentation.viewMode }
     var activity: TempoRepresentation.Activity { digitalRepresentation.activity }
+    var timerDuration: Int { digitalRepresentation.timerDuration }
+    var isTimerExceeded: Bool {
+        guard let remaining = digitalRepresentation.remainingTime else { return false }
+        return remaining < 0
+    }
     var minutesDisplay: Int? {
         guard objectRepresentation.status == .Available else { return nil }
         switch objectRepresentation.viewMode {
@@ -90,7 +95,10 @@ class TempoLink: ObservableObject {
     func pause() {
         print("Stop")
         digitalRepresentation.activity = .Waiting
-        interface.stop(handler: objectRepresentation.statusUpdate)
+        interface.stop { result in
+            self.objectRepresentation.statusUpdate(result)
+            self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+        }
 //        switch digitalRepresentation.activity {
 //        case .Running:
 //            print("Pause")

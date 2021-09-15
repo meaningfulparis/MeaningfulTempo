@@ -31,6 +31,18 @@ struct TimerText: ViewModifier {
     
 }
 
+struct SmallTimerText: ViewModifier {
+    
+    var color:Color = .tBlack
+    
+    func body(content: Content) -> some View {
+        content
+            .font(.custom("Sora-Regular", size: 32))
+            .foregroundColor(color)
+    }
+    
+}
+
 struct DetailText: ViewModifier {
     
     var color:Color = .tSoil
@@ -50,6 +62,8 @@ struct Fonts_Previews: PreviewProvider {
                 .modifier(HighlightText())
             Text("TimerText")
                 .modifier(TimerText())
+            Text("SmallTimerText +")
+                .modifier(SmallTimerText())
             Text("DetailText")
                 .modifier(DetailText())
         }

@@ -16,7 +16,11 @@ class TempoObjectRepresentation: TempoRepresentation {
                 self.status = .Available
                 self.activity = resp.activity
                 self.timerDuration = resp.timerDuration
-                self.timerStart = Date(timeIntervalSinceNow: resp.timerRelativeStart / -1000)
+                if let relativeStart = resp.timerRelativeStart {
+                    self.timerStart = Date(timeIntervalSinceNow: relativeStart / -1000)
+                } else {
+                    self.timerStart = nil
+                }
             }
         case .failure(let error):
             DispatchQueue.main.async {

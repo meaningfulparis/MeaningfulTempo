@@ -14,7 +14,7 @@ class TempoInterface {
             let success:Bool
             let activity:TempoRepresentation.Activity
             let timerDuration:Int
-            let timerRelativeStart:TimeInterval
+            let timerRelativeStart:TimeInterval?
         }
     }
     

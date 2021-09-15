@@ -19,7 +19,7 @@ struct TempoButton: View {
     var shadowColor: Color {
         switch link.connexionStatus {
         case .Connected:
-            return Color.tGold
+            return link.isTimerExceeded ? Color.tBlue : Color.tGold
         case .Connecting:
             return Color.tBlue
         case .Searching:
