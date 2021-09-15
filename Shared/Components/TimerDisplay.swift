@@ -22,17 +22,13 @@ struct TimerDisplay: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            HStack {
-                Spacer()
-                Text(minutes)
-            }
+            Text(minutes)
+                .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .trailing)
             Text(":")
-            HStack {
-                Text(seconds)
-                Spacer()
-            }
+            Text(seconds)
+                .frame(idealWidth: .infinity, maxWidth: .infinity, alignment: .leading)
         }
-        .font(.largeTitle)
+        .modifier(TimerText())
         .padding(.bottom, 56)
     }
 }

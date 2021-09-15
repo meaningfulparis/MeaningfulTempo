@@ -37,14 +37,18 @@ struct TimerWheel: View {
     
     @State private var dial = Dial()
     
+    private var visibleWhenNotSearching: Double { link.connexionStatus != .Searching && link.viewMode == .Settings ? 1 : 0 }
+    private var visibleWhenConnected:Double { link.connexionStatus == .Connected && link.viewMode == .Settings ? 1 : 0 }
+    private var isDraggingEnabled: Bool { link.viewMode == .Settings && link.connexionStatus == .Connected }
+    
     var body: some View {
         GeometryReader { g in
             VStack(alignment: .center, spacing: 8) {
                 TimeIndicator(.vertical)
-                    .opacity(link.connexionStatus != .Searching ? 1 : 0)
+                    .opacity(visibleWhenNotSearching)
                 HStack(alignment: .center, spacing: 8) {
                     TimeIndicator(.horizontal)
-                        .opacity(link.connexionStatus != .Searching ? 1 : 0)
+                        .opacity(visibleWhenNotSearching)
                     ZStack(alignment: .center) {
                         TempoButton()
                             .animation(.easeInOut(duration: 0.6))
@@ -54,7 +58,7 @@ struct TimerWheel: View {
                             TimeIndicator(.detail)
                                 .transformEffect(.init(translationX: 0, y: (g.size.width - 120) / -2))
                                 .rotationEffect(.init(degrees: Double(i * 30)))
-                                .opacity(link.connexionStatus == .Connected ? 1 : 0)
+                                .opacity(visibleWhenConnected)
                                 .animation(.linear(duration: 0.1).delay(0.05 * Double(i)))
                         }
                         Circle()
@@ -63,16 +67,16 @@ struct TimerWheel: View {
                             .frame(width: 28, height: 28)
                             .transformEffect(.init(translationX: 0, y: (g.size.width - 128) / -2))
                             .rotationEffect(handleAngle)
-                            .opacity(link.connexionStatus == .Connected ? 1 : 0)
+                            .opacity(visibleWhenConnected)
                             .animation(.easeInOut(duration: 0.6))
                     }
                     .frame(width: g.size.width - 48, height: g.size.width - 48)
                     TimeIndicator(.horizontal)
-                        .opacity(link.connexionStatus != .Searching ? 1 : 0)
+                        .opacity(visibleWhenNotSearching)
                 }
                 .frame(width: g.size.width - 48, height: g.size.width - 48)
                 TimeIndicator(.vertical)
-                    .opacity(link.connexionStatus != .Searching ? 1 : 0)
+                    .opacity(visibleWhenNotSearching)
             }
             .frame(width: g.size.width, height: g.size.width)
             .gesture(rotationDragGesture(diameter: g.size.width))
@@ -85,10 +89,12 @@ struct TimerWheel: View {
         let center = CGPoint(x: diameter/2, y: diameter/2)
         return DragGesture()
             .onChanged { value in
+                guard isDraggingEnabled else { return }
                 dial.angle = rotationAngle(of: value.location, around: center)
                 link.updateTimer(dialValue: dial.angle.radians)
             }
             .onEnded { _ in
+                guard isDraggingEnabled else { return }
                 link.updateTimer(dialValue: dial.angle.radians)
             }
     }

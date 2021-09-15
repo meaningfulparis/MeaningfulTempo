@@ -35,6 +35,12 @@
 		DE80A04126EB607600598DC6 /* TempoInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04026EB607600598DC6 /* TempoInterface.swift */; };
 		DE80A04326EB624A00598DC6 /* TempoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04226EB624A00598DC6 /* TempoButton.swift */; };
 		DE80A04526EB63AF00598DC6 /* ArcCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE80A04426EB63AF00598DC6 /* ArcCircle.swift */; };
+		DE8B789926F1F4B70029045B /* Sora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE8B789726F1F4B70029045B /* Sora-Regular.ttf */; };
+		DE8B789A26F1F4B70029045B /* Sora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE8B789726F1F4B70029045B /* Sora-Regular.ttf */; };
+		DE8B789B26F1F4B70029045B /* Sora-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */; };
+		DE8B789C26F1F4B70029045B /* Sora-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */; };
+		DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B789D26F1F52A0029045B /* Fonts.swift */; };
+		DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B789D26F1F52A0029045B /* Fonts.swift */; };
 		DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960426EB918300BB1EC1 /* TempoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */; };
@@ -64,6 +70,9 @@
 		DE80A04026EB607600598DC6 /* TempoInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoInterface.swift; sourceTree = "<group>"; };
 		DE80A04226EB624A00598DC6 /* TempoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoButton.swift; sourceTree = "<group>"; };
 		DE80A04426EB63AF00598DC6 /* ArcCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcCircle.swift; sourceTree = "<group>"; };
+		DE8B789726F1F4B70029045B /* Sora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sora-Regular.ttf"; sourceTree = "<group>"; };
+		DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sora-SemiBold.ttf"; sourceTree = "<group>"; };
+		DE8B789D26F1F52A0029045B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoFinder.swift; sourceTree = "<group>"; };
 		DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoRepresentation.swift; sourceTree = "<group>"; };
 		DEFACEB426F0EC42008A1D79 /* DispatchQueue_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue_extension.swift; sourceTree = "<group>"; };
@@ -101,6 +110,7 @@
 		DE7807B526EA227D00FC5FAF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DE8B789626F1F4360029045B /* Fonts */,
 				DE7807E526EA464900FC5FAF /* Utilitarians */,
 				DE7807DB26EA3FDA00FC5FAF /* Managers */,
 				DE7807D826EA3F5400FC5FAF /* Components */,
@@ -184,8 +194,18 @@
 				DE7807DF26EA43E500FC5FAF /* Extensions */,
 				DE7807E226EA44A700FC5FAF /* Shapes */,
 				DE7807E626EA466900FC5FAF /* SafeAreaInsetsKey.swift */,
+				DE8B789D26F1F52A0029045B /* Fonts.swift */,
 			);
 			path = Utilitarians;
+			sourceTree = "<group>";
+		};
+		DE8B789626F1F4360029045B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DE8B789726F1F4B70029045B /* Sora-Regular.ttf */,
+				DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8B789926F1F4B70029045B /* Sora-Regular.ttf in Resources */,
+				DE8B789B26F1F4B70029045B /* Sora-SemiBold.ttf in Resources */,
 				DE7807CD26EA227E00FC5FAF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +296,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8B789A26F1F4B70029045B /* Sora-Regular.ttf in Resources */,
+				DE8B789C26F1F4B70029045B /* Sora-SemiBold.ttf in Resources */,
 				DE7807CE26EA227E00FC5FAF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +316,7 @@
 				DE7807CB26EA227E00FC5FAF /* ContentView.swift in Sources */,
 				DE7807ED26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
 				DE7807E426EA44CA00FC5FAF /* RoundedCornerShape.swift in Sources */,
+				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */,
 				DEFACEB526F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
@@ -315,6 +340,7 @@
 				DE7807CC26EA227E00FC5FAF /* ContentView.swift in Sources */,
 				DE15AB3926EB73B900B6AB27 /* TimerDisplay.swift in Sources */,
 				DE15AB3326EB738F00B6AB27 /* TempoLink.swift in Sources */,
+				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
 				DEFACEB626F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,

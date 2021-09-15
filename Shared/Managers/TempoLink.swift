@@ -23,17 +23,39 @@ class TempoLink: ObservableObject {
             return .Searching
         }
     }
+    var viewMode: TempoDigitalRepresentation.ViewMode { digitalRepresentation.viewMode }
+    var activity: TempoRepresentation.Activity { digitalRepresentation.activity }
     var minutesDisplay: Int? {
-        return objectRepresentation.status == .Available ? Int(floor((digitalRepresentation.remainingTime ?? 0) / 60)) : nil
+        guard objectRepresentation.status == .Available else { return nil }
+        switch objectRepresentation.viewMode {
+        case .Settings:
+            return digitalRepresentation.timerDuration
+        default:
+            guard let remainingTime = digitalRepresentation.remainingTime else {
+                return digitalRepresentation.timerDuration
+            }
+            return Int(floor(remainingTime / 60))
+        }
     }
-    var secondsDisplay: Int? { objectRepresentation.status == .Available ? Int((digitalRepresentation.remainingTime ?? 0).truncatingRemainder(dividingBy: 60)) : nil }
+    var secondsDisplay: Int? {
+        guard objectRepresentation.status == .Available else { return nil }
+        switch objectRepresentation.viewMode {
+        case .Settings:
+            return 0
+        default:
+            guard let remainingTime = digitalRepresentation.remainingTime else {
+                return 0
+            }
+            return Int(remainingTime.truncatingRemainder(dividingBy: 60))
+        }
+    }
     
     private let finder = TempoFinder()
     
     @Published private var objectRepresentation = TempoObjectRepresentation()
-    var objectRepresentationCancellable:AnyCancellable? = nil
+    private var objectRepresentationCancellable:AnyCancellable? = nil
     @Published private var digitalRepresentation = TempoDigitalRepresentation()
-    var digitalRepresentationCancellable:AnyCancellable? = nil
+    private var digitalRepresentationCancellable:AnyCancellable? = nil
     
     private lazy var interface = TempoInterface(digitalRepresentation: digitalRepresentation)
     
@@ -57,8 +79,13 @@ class TempoLink: ObservableObject {
     
     func play() {
         print("Launch")
+        digitalRepresentation.timerStart = nil
         digitalRepresentation.activity = .Loading
         interface.launch(handler: objectRepresentation.statusUpdate)
+        interface.launch { result in
+            self.objectRepresentation.statusUpdate(result)
+            self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+        }
     }
     
     func pause() {

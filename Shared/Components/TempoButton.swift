@@ -33,11 +33,11 @@ struct TempoButton: View {
             ArcCircle(start: 0, end: shadowEnd)
                 .shadow(color: shadowColor.opacity(0.8), radius: link.connexionStatus == .Connecting ? 90 : 60, x: 0, y: 0)
             ArcCircle(start: 0, end: shadowEnd)
-                .stroke(shadowColor, lineWidth: 2)
+                .stroke(shadowColor, lineWidth: link.viewMode == .RunningTimer ? 4 : 2)
             Circle()
                 .fill(link.connexionStatus == .Connected ? Color.tWhite : Color.tCream)
-            Button(action: link.play, label: {
-                Image("PlayButton")
+            Button(action: mainButtonAction, label: {
+                Image(link.viewMode == .RunningTimer ? "PauseButton" : "PlayButton")
                     .resizable()
                     .foregroundColor(Color.tSoil)
                     .frame(width: 54, height: 54)
@@ -48,6 +48,10 @@ struct TempoButton: View {
             .scaleEffect(link.connexionStatus == .Connected ? 1 : 0.75)
             .rotationEffect(link.connexionStatus == .Connected ? .zero : Angle(radians: .pi * -0.25))
         }
+    }
+    
+    private func mainButtonAction() {
+        link.viewMode == .RunningTimer ? link.pause() : link.play()
     }
     
 }

@@ -29,6 +29,7 @@ struct Header: View {
                 .frame(width: 44, height: 44)
             Spacer()
             Text(connexionStatusText)
+                .modifier(HighlightText())
             Spacer()
             (link.connexionStatus == .Connected ? Image("TempoConnected") : Image("TempoNotFound"))
                 .frame(width: 44, height: 44)
