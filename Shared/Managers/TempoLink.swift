@@ -81,8 +81,7 @@ class TempoLink: ObservableObject {
         print("Launch")
         digitalRepresentation.timerStart = nil
         digitalRepresentation.activity = .Loading
-        interface.launch(handler: objectRepresentation.statusUpdate)
-        interface.launch { result in
+        interface.launch(duration: digitalRepresentation.timerDuration) { result in
             self.objectRepresentation.statusUpdate(result)
             self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
         }

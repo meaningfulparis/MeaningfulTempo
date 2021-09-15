@@ -41,8 +41,8 @@ class TempoInterface {
         scheduleRequest(endpoint: "set-timer", method: .PUT, data: [String(duration)], handler: handler)
     }
     
-    func launch(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        sendRequest(endpoint: "launch", method: .PUT, data: [], handler: handler)
+    func launch(duration:Int, handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
+        sendRequest(endpoint: "launch", method: .PUT, data: [String(duration)], handler: handler)
     }
     
     func pause(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
