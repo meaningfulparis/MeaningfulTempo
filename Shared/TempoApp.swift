@@ -14,8 +14,20 @@ struct TempoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(link)
+            VStack {
+                Header()
+                Spacer()
+                switch link.viewMode {
+                case .WifiConfiguration:
+                    Text("Wifi configuration...")
+                        .modifier(SmallTimerText())
+                default:
+                    MainView()
+                }
+                Spacer()
+            }
+            .environmentObject(link)
+            .background(Color.tCream.edgesIgnoringSafeArea(.all))
         }
     }
 }

@@ -33,6 +33,25 @@ class TempoInterface {
         self.digitalRepresentation = digitalRepresentation
     }
     
+    func detectTempoConfiguration(handler: @escaping (Result<Response.Default, InterfaceError>) -> Void) {
+        let ip = "192.168.4.1"
+        guard let url = URL(string: "http://\(ip):8000/object-state/") else {
+            handler(.failure(.URLInitializationFailed))
+            return
+        }
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("-> Tempo looking for wifi sent to \(url)")
+        send(request: request) { (result:Result<Response.Default, InterfaceError>) in
+            switch result {
+            case .failure(let error):
+                print("Tempo looking for wifi not found : \(error.localizedDescription)")
+            default:
+                handler(result)
+            }
+        }
+    }
+    
     func getObjectState(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
         sendRequest(endpoint: "object-state", method: .GET, data: [], handler: handler)
     }
@@ -77,6 +96,10 @@ class TempoInterface {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = method.rawValue
         print("--> sent to \(url)")
+        send(request: request, handler: handler)
+    }
+    
+    private func send<T:Decodable>(request:URLRequest, handler:@escaping (Result<T, InterfaceError>) -> Void) {
         URLSession.shared.dataTask(with: request) { data, resp, error in
             if let error = error {
                 print("Request error : \(error.localizedDescription)")

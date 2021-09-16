@@ -74,10 +74,10 @@ class TempoRepresentation:ObservableObject {
     
     enum Status { case NotFound, Available, Lost }
     enum ViewMode {
-        case Settings, RunningTimer, PausedTimer
+        case WifiConfiguration, Settings, RunningTimer, PausedTimer
     }
     enum Activity:Int, Codable {
-        case Off, Waiting, Loading, Running, RunEnding, RunOffseting
+        case LookingForWifi, Off, Waiting, Loading, Running, RunEnding, RunOffseting
     }
     
     let port:String = "8000"
@@ -86,7 +86,9 @@ class TempoRepresentation:ObservableObject {
     @Published var status:Status = .NotFound
     @Published var activity:Activity = .Waiting
     var viewMode: ViewMode {
-        if [Activity.Off, Activity.Waiting].contains(activity) {
+        if activity == .LookingForWifi {
+            return .WifiConfiguration
+        } else if [Activity.Off, Activity.Waiting].contains(activity) {
             return .Settings
         } else {
             return .RunningTimer

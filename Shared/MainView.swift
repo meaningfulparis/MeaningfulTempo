@@ -7,22 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     var body: some View {
         VStack {
-            Header()
             TimerDisplay()
             TimerWheel()
             SecondaryAction()
         }
         .padding(.bottom, 40)
-        .background(Color.tCream.edgesIgnoringSafeArea(.all))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
             .environmentObject(TempoLink())
     }
 }

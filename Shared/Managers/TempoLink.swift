@@ -76,6 +76,7 @@ class TempoLink: ObservableObject {
         digitalRepresentationCancellable = digitalRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
             self?.objectWillChange.send()
         })
+        interface.detectTempoConfiguration(handler: animatedStatusUpdate)
     }
     
     func updateTimer(dialValue:Double) {

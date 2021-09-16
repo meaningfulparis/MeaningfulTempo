@@ -21,8 +21,8 @@
 		DE15AB3C26EB73C900B6AB27 /* Color_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E026EA43EF00FC5FAF /* Color_extension.swift */; };
 		DE7807C926EA227E00FC5FAF /* TempoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B626EA227D00FC5FAF /* TempoApp.swift */; };
 		DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B626EA227D00FC5FAF /* TempoApp.swift */; };
-		DE7807CB26EA227E00FC5FAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* ContentView.swift */; };
-		DE7807CC26EA227E00FC5FAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* ContentView.swift */; };
+		DE7807CB26EA227E00FC5FAF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* MainView.swift */; };
+		DE7807CC26EA227E00FC5FAF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* MainView.swift */; };
 		DE7807CD26EA227E00FC5FAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE7807B826EA227E00FC5FAF /* Assets.xcassets */; };
 		DE7807CE26EA227E00FC5FAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE7807B826EA227E00FC5FAF /* Assets.xcassets */; };
 		DE7807DA26EA3F6000FC5FAF /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807D926EA3F6000FC5FAF /* Header.swift */; };
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		DE06082F26F2395800BF3AFB /* SecondaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAction.swift; sourceTree = "<group>"; };
 		DE7807B626EA227D00FC5FAF /* TempoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoApp.swift; sourceTree = "<group>"; };
-		DE7807B726EA227D00FC5FAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DE7807B726EA227D00FC5FAF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DE7807B826EA227E00FC5FAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE7807BD26EA227E00FC5FAF /* Tempo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tempo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7807C026EA227E00FC5FAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				DE7807DB26EA3FDA00FC5FAF /* Managers */,
 				DE7807D826EA3F5400FC5FAF /* Components */,
 				DE7807B626EA227D00FC5FAF /* TempoApp.swift */,
-				DE7807B726EA227D00FC5FAF /* ContentView.swift */,
+				DE7807B726EA227D00FC5FAF /* MainView.swift */,
 				DE7807B826EA227E00FC5FAF /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -317,7 +317,7 @@
 				DE7807E726EA466900FC5FAF /* SafeAreaInsetsKey.swift in Sources */,
 				DE7807E126EA43EF00FC5FAF /* Color_extension.swift in Sources */,
 				DE80A04526EB63AF00598DC6 /* ArcCircle.swift in Sources */,
-				DE7807CB26EA227E00FC5FAF /* ContentView.swift in Sources */,
+				DE7807CB26EA227E00FC5FAF /* MainView.swift in Sources */,
 				DE7807ED26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
 				DE7807E426EA44CA00FC5FAF /* RoundedCornerShape.swift in Sources */,
 				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
@@ -342,7 +342,7 @@
 				DE15AB3826EB73AF00B6AB27 /* Header.swift in Sources */,
 				DE15AB3B26EB73C600B6AB27 /* RoundedCornerShape.swift in Sources */,
 				DE15AB3726EB73AC00B6AB27 /* TimerWheel.swift in Sources */,
-				DE7807CC26EA227E00FC5FAF /* ContentView.swift in Sources */,
+				DE7807CC26EA227E00FC5FAF /* MainView.swift in Sources */,
 				DE15AB3926EB73B900B6AB27 /* TimerDisplay.swift in Sources */,
 				DE15AB3326EB738F00B6AB27 /* TempoLink.swift in Sources */,
 				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,

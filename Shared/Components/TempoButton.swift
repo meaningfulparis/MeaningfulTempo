@@ -20,6 +20,8 @@ struct TempoButton: View {
             return 1
         case .PausedTimer:
             return 1
+        case .WifiConfiguration:
+            return 0
         }
     }
     
