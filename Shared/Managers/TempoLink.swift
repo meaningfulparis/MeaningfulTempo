@@ -59,14 +59,14 @@ class TempoLink: ObservableObject {
         }
     }
     
-    private let finder = TempoFinder()
-    
     @Published private var objectRepresentation = TempoObjectRepresentation()
     private var objectRepresentationCancellable:AnyCancellable? = nil
     @Published private var digitalRepresentation = TempoDigitalRepresentation()
     private var digitalRepresentationCancellable:AnyCancellable? = nil
     
     private lazy var interface = TempoInterface(digitalRepresentation: digitalRepresentation)
+    private lazy var finder = TempoFinder(withInterface: interface)
+    private var statusUpdateTimer:Timer?
     
     init() {
         finder.delegate = self
@@ -76,7 +76,18 @@ class TempoLink: ObservableObject {
         digitalRepresentationCancellable = digitalRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
             self?.objectWillChange.send()
         })
-        interface.detectTempoConfiguration(handler: animatedStatusUpdate)
+        statusUpdateTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: self.statusUpdate)
+        statusUpdateTimer?.fire()
+    }
+    
+    private func statusUpdate(_ timer:Timer) {
+        if connexionStatus == .Searching {
+            finder.lookForTempo()
+            print(Date(), " | TRY TO LOOK FOR TEMPO")
+        } else {
+            print(Date(), " | NEED STATUS UPDATE")
+            interface.getObjectState(handler: animatedStatusUpdate)
+        }
     }
     
     func updateTimer(dialValue:Double) {
@@ -127,6 +138,11 @@ class TempoLink: ObservableObject {
 
 extension TempoLink : TempoFinderDelegate {
     
+    func didFindWaitingConfigurationTempo(ip: String, result: Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
+        self.digitalRepresentation.setUp(ip: ip)
+        self.animatedStatusUpdate(result: result)
+    }
+    
     func didFindTempo(ip:String) {
         print("did find tempo")
         DispatchQueue.main.asyncWithAnimation {
@@ -151,7 +167,7 @@ extension TempoLink : TempoFinderDelegate {
     }
     
     func tempoNotFound() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1, execute: finder.lookForTempo)
+//        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1, execute: finder.lookForTempo)
     }
     
 }

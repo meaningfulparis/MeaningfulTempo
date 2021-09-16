@@ -8,6 +8,7 @@
 import Foundation
 
 protocol TempoFinderDelegate {
+    func didFindWaitingConfigurationTempo(ip:String, result: Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>)
     func didFindTempo(ip:String)
     func tempoNotFound()
 }
@@ -15,28 +16,56 @@ protocol TempoFinderDelegate {
 class TempoFinder {
     
     var delegate:TempoFinderDelegate?
+    private var interface:TempoInterface
     private let tempoHostName = TempoConfiguration.hostname
+    private var lookForTempoOnWifiWorkItem:DispatchWorkItem?
+    private var lookForWaitingConfigurationTempoWorkItem:DispatchWorkItem?
     
-    init() {
-        lookForTempo()
+    init(withInterface interface:TempoInterface) {
+        self.interface = interface
     }
     
     func lookForTempo() {
-        DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + 2) {
-            print("||| Look for tempo |||")
-            for i in 0..<255 {
-                let ip = "192.168.1.\(i)"
-                if let hostName = self.getHostName(ip), hostName != ip {
-                    print("----> ", hostName)
-                }
-                if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
-                    self.delegate?.didFindTempo(ip: ip)
-                    return
-                }
-    //            delegate?.didFindTempo(ip: "192.168.1.34")
-    //            return
+        lookForTempoOnWifiWorkItem?.cancel()
+        lookForWaitingConfigurationTempoWorkItem?.cancel()
+        lookForTempoOnWifiWorkItem =  DispatchWorkItem(block: lookForAvailableTempoOnWifi)
+        lookForWaitingConfigurationTempoWorkItem =  DispatchWorkItem(block: lookForWaitingConfigurationTempo)
+        DispatchQueue.global(qos: .utility).async(execute: lookForTempoOnWifiWorkItem!)
+        DispatchQueue.global(qos: .utility).async(execute: lookForWaitingConfigurationTempoWorkItem!)
+    }
+    
+    private func didFindTempo() {
+        lookForTempoOnWifiWorkItem?.cancel()
+        lookForWaitingConfigurationTempoWorkItem?.cancel()
+    }
+    
+    private func lookForAvailableTempoOnWifi() {
+//        print("||| Look for tempo |||")
+        for i in 0..<255 {
+            let ip = "192.168.1.\(i)"
+//            if let hostName = self.getHostName(ip), hostName != ip {
+//                print("----> ", hostName)
+//            }
+            if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
+                self.didFindTempo()
+                self.delegate?.didFindTempo(ip: ip)
+                return
             }
-            self.delegate?.tempoNotFound()
+//            delegate?.didFindTempo(ip: "192.168.1.34")
+//            return
+        }
+        self.delegate?.tempoNotFound()
+    }
+    
+    private func lookForWaitingConfigurationTempo() {
+        interface.detectTempoConfiguration { result in
+            switch result {
+            case .failure(let error):
+                print("Tempo looking for wifi not found : \(error.localizedDescription)")
+            case .success(_):
+                self.didFindTempo()
+                self.delegate?.didFindWaitingConfigurationTempo(ip: TempoConfiguration.configurationIP, result: result)
+            }
         }
     }
     

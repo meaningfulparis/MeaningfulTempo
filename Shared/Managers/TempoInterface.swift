@@ -38,17 +38,10 @@ class TempoInterface {
             handler(.failure(.URLInitializationFailed))
             return
         }
-        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 3)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         print("-> Tempo looking for wifi sent to \(url)")
-        send(request: request) { (result:Result<Response.Default, InterfaceError>) in
-            switch result {
-            case .failure(let error):
-                print("Tempo looking for wifi not found : \(error.localizedDescription)")
-            default:
-                handler(result)
-            }
-        }
+        send(request: request, handler: handler)
     }
     
     func getObjectState(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
@@ -90,11 +83,10 @@ class TempoInterface {
             handler(.failure(.URLInitializationFailed))
             return
         }
-        print("-> \(url)")
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = method.rawValue
-        print("--> sent to \(url)")
+        print("[Request sent to \(url)]")
         send(request: request, handler: handler)
     }
     
