@@ -80,7 +80,7 @@ class TempoRepresentation:ObservableObject {
         case LookingForWifi, Off, Waiting, Loading, Running, RunEnding, RunOffseting
     }
     
-    let port:String = "8000"
+    let port:String = TempoConfiguration.port
     var ip:String? = nil
     
     @Published var status:Status = .NotFound

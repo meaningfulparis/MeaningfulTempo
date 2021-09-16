@@ -15,7 +15,7 @@ protocol TempoFinderDelegate {
 class TempoFinder {
     
     var delegate:TempoFinderDelegate?
-    private let tempoHostName = "arduino-a570"
+    private let tempoHostName = TempoConfiguration.hostname
     
     init() {
         lookForTempo()

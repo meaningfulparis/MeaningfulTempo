@@ -34,8 +34,7 @@ class TempoInterface {
     }
     
     func detectTempoConfiguration(handler: @escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        let ip = "192.168.4.1"
-        guard let url = URL(string: "http://\(ip):8000/object-state/") else {
+        guard let url = URL(string: "http://\(TempoConfiguration.configurationIP):\(TempoConfiguration.port)/object-state/") else {
             handler(.failure(.URLInitializationFailed))
             return
         }

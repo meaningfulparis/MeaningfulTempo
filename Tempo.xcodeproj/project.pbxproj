@@ -19,6 +19,8 @@
 		DE15AB3A26EB73C100B6AB27 /* SafeAreaInsetsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E626EA466900FC5FAF /* SafeAreaInsetsKey.swift */; };
 		DE15AB3B26EB73C600B6AB27 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E326EA44CA00FC5FAF /* RoundedCornerShape.swift */; };
 		DE15AB3C26EB73C900B6AB27 /* Color_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E026EA43EF00FC5FAF /* Color_extension.swift */; };
+		DE469C6826F367180048F9DE /* TempoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE469C6726F367180048F9DE /* TempoConfiguration.swift */; };
+		DE469C6926F367180048F9DE /* TempoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE469C6726F367180048F9DE /* TempoConfiguration.swift */; };
 		DE7807C926EA227E00FC5FAF /* TempoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B626EA227D00FC5FAF /* TempoApp.swift */; };
 		DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B626EA227D00FC5FAF /* TempoApp.swift */; };
 		DE7807CB26EA227E00FC5FAF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* MainView.swift */; };
@@ -53,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		DE06082F26F2395800BF3AFB /* SecondaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAction.swift; sourceTree = "<group>"; };
+		DE469C6726F367180048F9DE /* TempoConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoConfiguration.swift; sourceTree = "<group>"; };
 		DE7807B626EA227D00FC5FAF /* TempoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoApp.swift; sourceTree = "<group>"; };
 		DE7807B726EA227D00FC5FAF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DE7807B826EA227E00FC5FAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 				DE80A04026EB607600598DC6 /* TempoInterface.swift */,
 				DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */,
 				DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */,
+				DE469C6726F367180048F9DE /* TempoConfiguration.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -318,6 +322,7 @@
 				DE7807E126EA43EF00FC5FAF /* Color_extension.swift in Sources */,
 				DE80A04526EB63AF00598DC6 /* ArcCircle.swift in Sources */,
 				DE7807CB26EA227E00FC5FAF /* MainView.swift in Sources */,
+				DE469C6826F367180048F9DE /* TempoConfiguration.swift in Sources */,
 				DE7807ED26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
 				DE7807E426EA44CA00FC5FAF /* RoundedCornerShape.swift in Sources */,
 				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
@@ -343,6 +348,7 @@
 				DE15AB3B26EB73C600B6AB27 /* RoundedCornerShape.swift in Sources */,
 				DE15AB3726EB73AC00B6AB27 /* TimerWheel.swift in Sources */,
 				DE7807CC26EA227E00FC5FAF /* MainView.swift in Sources */,
+				DE469C6926F367180048F9DE /* TempoConfiguration.swift in Sources */,
 				DE15AB3926EB73B900B6AB27 /* TimerDisplay.swift in Sources */,
 				DE15AB3326EB738F00B6AB27 /* TempoLink.swift in Sources */,
 				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,
