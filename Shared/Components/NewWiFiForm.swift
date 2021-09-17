@@ -13,7 +13,7 @@ struct NewWiFiForm: View {
     @State private var name:String = ""
     @State private var password:String = ""
     
-    var connectAction:(String, String?) -> Void
+    var connectAction:(String, String) -> Void
     
     
     var body: some View {

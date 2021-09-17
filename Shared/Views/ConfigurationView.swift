@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConfigurationView: View {
     
-    @State private var configurator = TempoConfigurator()
+    @ObservedObject private var configurator = TempoConfigurator()
     
     var body: some View {
         if configurator.destinationNetwork != nil {

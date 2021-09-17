@@ -17,7 +17,7 @@ class TempoInterface : TempoWiFiInterface {
     }
     
     func detectTempoConfiguration(handler: @escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        guard let url = URL(string: "http://\(TempoConfiguration.configurationIP):\(TempoConfiguration.port)/object-state/") else {
+        guard let url = getRequestURL(ip: TempoConfiguration.configurationIP, endpoint: "object-state") else {
             handler(.failure(.URLInitializationFailed))
             return
         }
@@ -28,7 +28,7 @@ class TempoInterface : TempoWiFiInterface {
     }
     
     func getObjectState(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        sendRequest(endpoint: "object-state", method: .GET, data: [], handler: handler)
+        sendConnectObjectRequest(endpoint: "object-state", method: .GET, data: [], handler: handler)
     }
     
     func setTimer(duration:Int, handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
@@ -36,15 +36,15 @@ class TempoInterface : TempoWiFiInterface {
     }
     
     func launch(duration:Int, handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        sendRequest(endpoint: "launch", method: .PUT, data: [String(duration)], handler: handler)
+        sendConnectObjectRequest(endpoint: "launch", method: .PUT, data: [String(duration)], handler: handler)
     }
     
     func pause(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        sendRequest(endpoint: "pause", method: .PUT, data: [], handler: handler)
+        sendConnectObjectRequest(endpoint: "pause", method: .PUT, data: [], handler: handler)
     }
     
     func stop(handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
-        sendRequest(endpoint: "stop", method: .PUT, data: [], handler: handler)
+        sendConnectObjectRequest(endpoint: "stop", method: .PUT, data: [], handler: handler)
     }
     
     private func scheduleRequest<T:Decodable>(endpoint:String, method:Method, data:[String], handler:@escaping (Result<T, InterfaceError>) -> Void, delay:Double = 0.1) {
@@ -52,17 +52,17 @@ class TempoInterface : TempoWiFiInterface {
         scheduledRequests[endpoint] = deadline
         DispatchQueue.global(qos: .utility).asyncAfter(deadline: deadline) {
             guard self.scheduledRequests[endpoint] == deadline else { return }
-            self.sendRequest(endpoint: endpoint, method: method, data: data, handler: handler)
+            self.sendConnectObjectRequest(endpoint: endpoint, method: method, data: data, handler: handler)
             self.scheduledRequests.removeValue(forKey: endpoint)
         }
     }
     
-    private func sendRequest<T:Decodable>(endpoint:String, method:Method, data:[String], handler:@escaping (Result<T, InterfaceError>) -> Void) {
+    private func sendConnectObjectRequest<T:Decodable>(endpoint:String, method:Method, data:[String], handler:@escaping (Result<T, InterfaceError>) -> Void) {
         guard let ip = digitalRepresentation.ip else {
             handler(.failure(.unknownIP))
             return
         }
-        guard let url = URL(string: "http://\(ip):\(digitalRepresentation.port)/\(endpoint)/\(data.joined(separator: ":"))") else {
+        guard let url = getRequestURL(ip: ip, endpoint: endpoint, data: data) else {
             handler(.failure(.URLInitializationFailed))
             return
         }
@@ -87,18 +87,39 @@ class TempoWiFiInterface {
     }
     
     enum Method:String {
-        case GET, PUT
+        case GET, PUT, POST
     }
     
     enum InterfaceError:Error {
         case requestFailed, emptyAnswer, jsonDecodingFailed, unknownIP, URLInitializationFailed
     }
     
-    func getKnownWiFiNetworks() -> [TempoConfigurator.WiFiNetwork] {
-        return [
-            TempoConfigurator.WiFiNetwork(ssid: "Meaningful"),
-            TempoConfigurator.WiFiNetwork(ssid: "Boucheron"),
-        ]
+    func transferWiFiNetwork(ssid:String, password:String, handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
+        sendConfigurationObjectRequest(endpoint: "learn-wifi-network", method: .POST, data: [ssid,password], handler: handler)
+    }
+    
+    func getKnownWiFiNetworks(handler:@escaping (Result<[TempoConfigurator.WiFiNetwork], InterfaceError>) -> Void) {
+        sendConfigurationObjectRequest(endpoint: "known-wifi-network", method: .GET, data: [], handler: handler)
+    }
+    
+    func trashWiFiNetwork(ssid:String, handler:@escaping (Result<Response.Default, InterfaceError>) -> Void) {
+        sendConfigurationObjectRequest(endpoint: "trash-wifi", method: .POST, data: [ssid], handler: handler)
+    }
+    
+    fileprivate func getRequestURL(ip:String, endpoint:String, data:[String] = []) -> URL? {
+        return URL(string: "http://\(ip):\(TempoConfiguration.port)/\(endpoint)/\(data.joined(separator: ":"))")
+    }
+    
+    fileprivate func sendConfigurationObjectRequest<T:Decodable>(endpoint:String, method:Method, data:[String], handler:@escaping (Result<T, InterfaceError>) -> Void) {
+        guard let url = getRequestURL(ip: TempoConfiguration.configurationIP, endpoint: endpoint, data: data) else {
+            handler(.failure(.URLInitializationFailed))
+            return
+        }
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = method.rawValue
+        print("[Request sent to \(url)]")
+        send(request: request, handler: handler)
     }
     
     fileprivate func send<T:Decodable>(request:URLRequest, handler:@escaping (Result<T, InterfaceError>) -> Void) {

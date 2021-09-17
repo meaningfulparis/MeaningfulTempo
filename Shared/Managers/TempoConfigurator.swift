@@ -7,29 +7,59 @@
 
 import SwiftUI
 
-struct TempoConfigurator {
+class TempoConfigurator : ObservableObject {
     
-    struct WiFiNetwork:Identifiable {
+    struct WiFiNetwork:Identifiable, Decodable {
         let id = UUID()
         let ssid:String
     }
     
-    var knownWiFiNetworks:[WiFiNetwork] = []
-    var destinationNetwork:String? = nil
+    @Published var knownWiFiNetworks:[WiFiNetwork] = []
+    @Published var destinationNetwork:String? = nil
     private let interface = TempoWiFiInterface()
     
     init() {
-        knownWiFiNetworks = interface.getKnownWiFiNetworks()
+        interface.getKnownWiFiNetworks { result in
+            switch result {
+            case .success(let networks):
+                withAnimation {
+                    self.knownWiFiNetworks = networks
+                }
+            case .failure(let error):
+                print("Error while fetching wifi networks : \(error)")
+            }
+        }
     }
     
     func trashWiFi(called ssid:String) {
         print("Trash wifi called \(ssid)")
+        interface.trashWiFiNetwork(ssid: ssid) { result in
+            switch result {
+                case .success(_):
+                    withAnimation {
+                        self.knownWiFiNetworks.removeAll { $0.ssid == ssid }
+                    }
+                    break
+                case .failure(let error):
+                    print("Error while trashing WiFi : \(error)")
+                    break
+            }
+        }
     }
     
-    mutating func connectToWiFi(called ssid:String, withPassword password:String? = nil) {
+    func connectToWiFi(called ssid:String, withPassword password:String = "") {
         print("Connect to \(ssid) with \(password)")
-        withAnimation {
-            self.destinationNetwork = ssid
+        interface.transferWiFiNetwork(ssid: ssid, password: password) { result in
+            switch result {
+                case .success(_):
+                    withAnimation {
+                        self.destinationNetwork = ssid
+                    }
+                    break
+                case .failure(let error):
+                    print("Error while connecting to WiFi : \(error)")
+                    break
+            }
         }
     }
     
