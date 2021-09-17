@@ -57,6 +57,8 @@
 		DE8E8FD726F4C7DC00479325 /* TempoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */; };
 		DE8E8FD926F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */; };
 		DE8E8FDA26F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */; };
+		DE8E8FDC26F4D2E200479325 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FDB26F4D2E200479325 /* HelpView.swift */; };
+		DE8E8FDD26F4D2E200479325 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FDB26F4D2E200479325 /* HelpView.swift */; };
 		DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960426EB918300BB1EC1 /* TempoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */; };
@@ -97,6 +99,7 @@
 		DE8E8FD226F4952E00479325 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoConfigurator.swift; sourceTree = "<group>"; };
 		DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSuccessScreen.swift; sourceTree = "<group>"; };
+		DE8E8FDB26F4D2E200479325 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoFinder.swift; sourceTree = "<group>"; };
 		DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoRepresentation.swift; sourceTree = "<group>"; };
 		DEFACEB426F0EC42008A1D79 /* DispatchQueue_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue_extension.swift; sourceTree = "<group>"; };
@@ -244,6 +247,7 @@
 			children = (
 				DE7807B726EA227D00FC5FAF /* MainView.swift */,
 				DE8E8FC926F491AE00479325 /* ConfigurationView.swift */,
+				DE8E8FDB26F4D2E200479325 /* HelpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7807EB26EA47F900FC5FAF /* TimerWheel.swift in Sources */,
+				DE8E8FDC26F4D2E200479325 /* HelpView.swift in Sources */,
 				DE8E8FCA26F491AE00479325 /* ConfigurationView.swift in Sources */,
 				DE7807E726EA466900FC5FAF /* SafeAreaInsetsKey.swift in Sources */,
 				DE7807E126EA43EF00FC5FAF /* Color_extension.swift in Sources */,
@@ -382,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE15AB3426EB73A300B6AB27 /* ArcCircle.swift in Sources */,
+				DE8E8FDD26F4D2E200479325 /* HelpView.swift in Sources */,
 				DE8E8FCB26F491AE00479325 /* ConfigurationView.swift in Sources */,
 				DE15AB3826EB73AF00B6AB27 /* Header.swift in Sources */,
 				DE15AB3B26EB73C600B6AB27 /* RoundedCornerShape.swift in Sources */,

@@ -59,6 +59,7 @@ class TempoLink: ObservableObject {
         }
     }
     
+    @Published var needHelp:Bool = false
     @Published private var objectRepresentation = TempoObjectRepresentation()
     private var objectRepresentationCancellable:AnyCancellable? = nil
     @Published private var digitalRepresentation = TempoDigitalRepresentation()
