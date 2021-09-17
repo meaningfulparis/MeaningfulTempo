@@ -80,6 +80,13 @@ class TempoLink: ObservableObject {
         statusUpdateTimer?.fire()
     }
     
+    func restart() {
+        print("Restart")
+        digitalRepresentation.reinitialize()
+        objectRepresentation.reinitialize()
+        statusUpdateTimer?.fire()
+    }
+    
     private func statusUpdate(_ timer:Timer) {
         if connexionStatus == .Searching {
             finder.lookForTempo()

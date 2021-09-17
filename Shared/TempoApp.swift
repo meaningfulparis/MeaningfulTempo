@@ -14,13 +14,12 @@ struct TempoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            VStack {
+            VStack(spacing: 0) {
                 Header()
                 Spacer()
                 switch link.viewMode {
                 case .WifiConfiguration:
-                    Text("Wifi configuration...")
-                        .modifier(SmallTimerText())
+                    ConfigurationView()
                 default:
                     MainView()
                 }

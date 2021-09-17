@@ -45,6 +45,18 @@
 		DE8B789C26F1F4B70029045B /* Sora-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */; };
 		DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B789D26F1F52A0029045B /* Fonts.swift */; };
 		DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B789D26F1F52A0029045B /* Fonts.swift */; };
+		DE8E8FCA26F491AE00479325 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FC926F491AE00479325 /* ConfigurationView.swift */; };
+		DE8E8FCB26F491AE00479325 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FC926F491AE00479325 /* ConfigurationView.swift */; };
+		DE8E8FCD26F492CF00479325 /* WiFiCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FCC26F492CF00479325 /* WiFiCard.swift */; };
+		DE8E8FCE26F492CF00479325 /* WiFiCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FCC26F492CF00479325 /* WiFiCard.swift */; };
+		DE8E8FD026F4944200479325 /* NewWiFiForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FCF26F4944200479325 /* NewWiFiForm.swift */; };
+		DE8E8FD126F4944200479325 /* NewWiFiForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FCF26F4944200479325 /* NewWiFiForm.swift */; };
+		DE8E8FD326F4952E00479325 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD226F4952E00479325 /* InputField.swift */; };
+		DE8E8FD426F4952E00479325 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD226F4952E00479325 /* InputField.swift */; };
+		DE8E8FD626F4C7DC00479325 /* TempoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */; };
+		DE8E8FD726F4C7DC00479325 /* TempoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */; };
+		DE8E8FD926F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */; };
+		DE8E8FDA26F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */; };
 		DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960426EB918300BB1EC1 /* TempoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */; };
@@ -79,6 +91,12 @@
 		DE8B789726F1F4B70029045B /* Sora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sora-Regular.ttf"; sourceTree = "<group>"; };
 		DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sora-SemiBold.ttf"; sourceTree = "<group>"; };
 		DE8B789D26F1F52A0029045B /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		DE8E8FC926F491AE00479325 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		DE8E8FCC26F492CF00479325 /* WiFiCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiCard.swift; sourceTree = "<group>"; };
+		DE8E8FCF26F4944200479325 /* NewWiFiForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWiFiForm.swift; sourceTree = "<group>"; };
+		DE8E8FD226F4952E00479325 /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
+		DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoConfigurator.swift; sourceTree = "<group>"; };
+		DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSuccessScreen.swift; sourceTree = "<group>"; };
 		DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoFinder.swift; sourceTree = "<group>"; };
 		DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoRepresentation.swift; sourceTree = "<group>"; };
 		DEFACEB426F0EC42008A1D79 /* DispatchQueue_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue_extension.swift; sourceTree = "<group>"; };
@@ -116,12 +134,12 @@
 		DE7807B526EA227D00FC5FAF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				DE8E8FC826F4919B00479325 /* Views */,
 				DE8B789626F1F4360029045B /* Fonts */,
 				DE7807E526EA464900FC5FAF /* Utilitarians */,
 				DE7807DB26EA3FDA00FC5FAF /* Managers */,
 				DE7807D826EA3F5400FC5FAF /* Components */,
 				DE7807B626EA227D00FC5FAF /* TempoApp.swift */,
-				DE7807B726EA227D00FC5FAF /* MainView.swift */,
 				DE7807B826EA227E00FC5FAF /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -161,6 +179,10 @@
 				DE7807EA26EA47F900FC5FAF /* TimerWheel.swift */,
 				DE80A04226EB624A00598DC6 /* TempoButton.swift */,
 				DE06082F26F2395800BF3AFB /* SecondaryAction.swift */,
+				DE8E8FCC26F492CF00479325 /* WiFiCard.swift */,
+				DE8E8FCF26F4944200479325 /* NewWiFiForm.swift */,
+				DE8E8FD226F4952E00479325 /* InputField.swift */,
+				DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -173,6 +195,7 @@
 				DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */,
 				DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */,
 				DE469C6726F367180048F9DE /* TempoConfiguration.swift */,
+				DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -214,6 +237,15 @@
 				DE8B789826F1F4B70029045B /* Sora-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		DE8E8FC826F4919B00479325 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE7807B726EA227D00FC5FAF /* MainView.swift */,
+				DE8E8FC926F491AE00479325 /* ConfigurationView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,13 +350,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE7807EB26EA47F900FC5FAF /* TimerWheel.swift in Sources */,
+				DE8E8FCA26F491AE00479325 /* ConfigurationView.swift in Sources */,
 				DE7807E726EA466900FC5FAF /* SafeAreaInsetsKey.swift in Sources */,
 				DE7807E126EA43EF00FC5FAF /* Color_extension.swift in Sources */,
 				DE80A04526EB63AF00598DC6 /* ArcCircle.swift in Sources */,
 				DE7807CB26EA227E00FC5FAF /* MainView.swift in Sources */,
 				DE469C6826F367180048F9DE /* TempoConfiguration.swift in Sources */,
 				DE7807ED26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
+				DE8E8FD926F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */,
 				DE7807E426EA44CA00FC5FAF /* RoundedCornerShape.swift in Sources */,
+				DE8E8FD026F4944200479325 /* NewWiFiForm.swift in Sources */,
+				DE8E8FD626F4C7DC00479325 /* TempoConfigurator.swift in Sources */,
 				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */,
@@ -332,9 +368,11 @@
 				DEFACEB526F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
 				DE80A04126EB607600598DC6 /* TempoInterface.swift in Sources */,
 				DE7807DD26EA3FEA00FC5FAF /* TempoLink.swift in Sources */,
+				DE8E8FD326F4952E00479325 /* InputField.swift in Sources */,
 				DE80A04326EB624A00598DC6 /* TempoButton.swift in Sources */,
 				DE7807DA26EA3F6000FC5FAF /* Header.swift in Sources */,
 				DE7807C926EA227E00FC5FAF /* TempoApp.swift in Sources */,
+				DE8E8FCD26F492CF00479325 /* WiFiCard.swift in Sources */,
 				DEE6960426EB918300BB1EC1 /* TempoRepresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,13 +382,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE15AB3426EB73A300B6AB27 /* ArcCircle.swift in Sources */,
+				DE8E8FCB26F491AE00479325 /* ConfigurationView.swift in Sources */,
 				DE15AB3826EB73AF00B6AB27 /* Header.swift in Sources */,
 				DE15AB3B26EB73C600B6AB27 /* RoundedCornerShape.swift in Sources */,
 				DE15AB3726EB73AC00B6AB27 /* TimerWheel.swift in Sources */,
 				DE7807CC26EA227E00FC5FAF /* MainView.swift in Sources */,
 				DE469C6926F367180048F9DE /* TempoConfiguration.swift in Sources */,
 				DE15AB3926EB73B900B6AB27 /* TimerDisplay.swift in Sources */,
+				DE8E8FDA26F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */,
 				DE15AB3326EB738F00B6AB27 /* TempoLink.swift in Sources */,
+				DE8E8FD126F4944200479325 /* NewWiFiForm.swift in Sources */,
+				DE8E8FD726F4C7DC00479325 /* TempoConfigurator.swift in Sources */,
 				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
@@ -358,9 +400,11 @@
 				DEFACEB626F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
 				DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */,
 				DE15AB3A26EB73C100B6AB27 /* SafeAreaInsetsKey.swift in Sources */,
+				DE8E8FD426F4952E00479325 /* InputField.swift in Sources */,
 				DE15AB3C26EB73C900B6AB27 /* Color_extension.swift in Sources */,
 				DE15AB3526EB73A500B6AB27 /* TempoInterface.swift in Sources */,
 				DE15AB3626EB73A900B6AB27 /* TempoButton.swift in Sources */,
+				DE8E8FCE26F492CF00479325 /* WiFiCard.swift in Sources */,
 				DEE6960526EB918300BB1EC1 /* TempoRepresentation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

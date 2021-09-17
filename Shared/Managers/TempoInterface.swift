@@ -7,24 +7,7 @@
 
 import Foundation
 
-class TempoInterface {
-    
-    struct Response {
-        struct Default:Codable {
-            let success:Bool
-            let activity:TempoRepresentation.Activity
-            let timerDuration:Int
-            let timerRelativeStart:TimeInterval?
-        }
-    }
-    
-    enum Method:String {
-        case GET, PUT
-    }
-    
-    enum InterfaceError:Error {
-        case requestFailed, emptyAnswer, jsonDecodingFailed, unknownIP, URLInitializationFailed
-    }
+class TempoInterface : TempoWiFiInterface {
     
     private let digitalRepresentation:TempoDigitalRepresentation
     private var scheduledRequests:[String:DispatchTime] = [:]
@@ -90,7 +73,35 @@ class TempoInterface {
         send(request: request, handler: handler)
     }
     
-    private func send<T:Decodable>(request:URLRequest, handler:@escaping (Result<T, InterfaceError>) -> Void) {
+}
+
+class TempoWiFiInterface {
+    
+    struct Response {
+        struct Default:Codable {
+            let success:Bool
+            let activity:TempoRepresentation.Activity
+            let timerDuration:Int
+            let timerRelativeStart:TimeInterval?
+        }
+    }
+    
+    enum Method:String {
+        case GET, PUT
+    }
+    
+    enum InterfaceError:Error {
+        case requestFailed, emptyAnswer, jsonDecodingFailed, unknownIP, URLInitializationFailed
+    }
+    
+    func getKnownWiFiNetworks() -> [TempoConfigurator.WiFiNetwork] {
+        return [
+            TempoConfigurator.WiFiNetwork(ssid: "Meaningful"),
+            TempoConfigurator.WiFiNetwork(ssid: "Boucheron"),
+        ]
+    }
+    
+    fileprivate func send<T:Decodable>(request:URLRequest, handler:@escaping (Result<T, InterfaceError>) -> Void) {
         URLSession.shared.dataTask(with: request) { data, resp, error in
             if let error = error {
                 print("Request error : \(error.localizedDescription)")

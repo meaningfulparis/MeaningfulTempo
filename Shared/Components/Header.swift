@@ -19,7 +19,11 @@ struct Header: View {
         case .Connecting:
             return "Connexion à Tempo..."
         case .Searching:
-            return "Recherche de Tempo..."
+            if link.viewMode == .WifiConfiguration {
+                return "Paramètrage de Tempo"
+            } else {
+                return "Recherche de Tempo..."
+            }
         }
     }
     

@@ -51,6 +51,7 @@ struct DetailText: ViewModifier {
         content
             .font(.custom("Sora-Regular", size: 14))
             .foregroundColor(color)
+            .lineSpacing(7)
     }
     
 }

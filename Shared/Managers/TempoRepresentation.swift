@@ -114,4 +114,11 @@ class TempoRepresentation:ObservableObject {
                 && self.timerStart == representation.timerStart
     }
     
+    func reinitialize() {
+        ip = nil
+        status = .NotFound
+        activity = .Waiting
+        timerStart = nil
+    }
+    
 }
