@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 extension UIApplication {
     var keyWindow: UIWindow? {
         connectedScenes
@@ -39,3 +40,4 @@ private extension UIEdgeInsets {
         EdgeInsets(top: top, leading: left, bottom: bottom, trailing: right)
     }
 }
+#endif

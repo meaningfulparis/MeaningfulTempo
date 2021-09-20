@@ -23,6 +23,7 @@ struct HelpView: View {
                         .frame(width: 45, height: 45)
                         .foregroundColor(.tBlack)
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             .padding(EdgeInsets(top: 24, leading: 24, bottom: 24, trailing: 16))
             .background(Color.tSand)
@@ -46,10 +47,10 @@ struct HelpView: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 40)
+                .padding(.vertical, 40)
             }
         }
-        .background(Color.tCream)
+        .background(Color.tCream.edgesIgnoringSafeArea(.all))
     }
     
 }

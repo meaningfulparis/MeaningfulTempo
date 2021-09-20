@@ -101,7 +101,9 @@ class TempoLink: ObservableObject {
     func updateTimer(dialValue:Double) {
         let newTimerDuration = Int(dialValue / .pi * 30)
         guard newTimerDuration != digitalRepresentation.timerDuration else { return }
+        #if os(iOS)
         UIImpactFeedbackGenerator(style: newTimerDuration % 5 == 0 ? .heavy : .light).impactOccurred()
+        #endif
         digitalRepresentation.timerDuration = newTimerDuration
         interface.setTimer(duration: newTimerDuration, handler: objectRepresentation.statusUpdate)
     }

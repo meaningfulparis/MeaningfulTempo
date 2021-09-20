@@ -30,6 +30,7 @@ struct ConfigurationSuccessScreen: View {
                     .background(Color.tWhite)
                     .cornerRadius(24)
             }
+            .buttonStyle(PlainButtonStyle())
         }
     }
     

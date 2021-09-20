@@ -19,10 +19,18 @@ struct ArcCircle: Shape {
     func path(in rect: CGRect) -> Path {
         let center = CGPoint(x: rect.origin.x + rect.width / 2, y: rect.origin.y + rect.height / 2)
         let radius = min(rect.width, rect.height) / 2
-        let start = start * .pi * 2 - (.pi * 0.5)
-        let end = end * .pi * 2 - (.pi * 0.5)
-        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
+        let startRadian = start * .pi * 2 - (.pi * 0.5)
+        let endRadian = end * .pi * 2 - (.pi * 0.5)
+        #if os(iOS)
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadian, endAngle: endRadian, clockwise: true)
         path.addLine(to: center)
+        #else
+        let path = NSBezierPath()
+        path.move(to: center)
+        path.line(to: center)
+        path.appendArc(withCenter: center, radius: radius, startAngle: start * 360, endAngle: end * 360)
+        path.line(to: center)
+        #endif
         return Path(path.cgPath)
     }
 }

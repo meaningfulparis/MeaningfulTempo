@@ -55,6 +55,7 @@ struct TempoButton: View {
                     .frame(width: 54, height: 54)
                     .padding(.all, 16)
             })
+            .buttonStyle(PlainButtonStyle())
             .disabled(link.connexionStatus != .Connected)
             .opacity(link.connexionStatus == .Connected ? 1 : 0)
             .scaleEffect(link.connexionStatus == .Connected ? 1 : 0.75)

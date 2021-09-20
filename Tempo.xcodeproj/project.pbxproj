@@ -21,6 +21,8 @@
 		DE15AB3C26EB73C900B6AB27 /* Color_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807E026EA43EF00FC5FAF /* Color_extension.swift */; };
 		DE469C6826F367180048F9DE /* TempoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE469C6726F367180048F9DE /* TempoConfiguration.swift */; };
 		DE469C6926F367180048F9DE /* TempoConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE469C6726F367180048F9DE /* TempoConfiguration.swift */; };
+		DE5A327326F8938900A3EF26 /* NSBezierPath_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A327226F8938900A3EF26 /* NSBezierPath_extension.swift */; };
+		DE5A327426F8938900A3EF26 /* NSBezierPath_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A327226F8938900A3EF26 /* NSBezierPath_extension.swift */; };
 		DE7807C926EA227E00FC5FAF /* TempoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B626EA227D00FC5FAF /* TempoApp.swift */; };
 		DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B626EA227D00FC5FAF /* TempoApp.swift */; };
 		DE7807CB26EA227E00FC5FAF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7807B726EA227D00FC5FAF /* MainView.swift */; };
@@ -70,6 +72,7 @@
 /* Begin PBXFileReference section */
 		DE06082F26F2395800BF3AFB /* SecondaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryAction.swift; sourceTree = "<group>"; };
 		DE469C6726F367180048F9DE /* TempoConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoConfiguration.swift; sourceTree = "<group>"; };
+		DE5A327226F8938900A3EF26 /* NSBezierPath_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPath_extension.swift; sourceTree = "<group>"; };
 		DE7807B626EA227D00FC5FAF /* TempoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoApp.swift; sourceTree = "<group>"; };
 		DE7807B726EA227D00FC5FAF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		DE7807B826EA227E00FC5FAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 			children = (
 				DE7807E026EA43EF00FC5FAF /* Color_extension.swift */,
 				DEFACEB426F0EC42008A1D79 /* DispatchQueue_extension.swift */,
+				DE5A327226F8938900A3EF26 /* NSBezierPath_extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -369,6 +373,7 @@
 				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */,
+				DE5A327326F8938900A3EF26 /* NSBezierPath_extension.swift in Sources */,
 				DE06083026F2395800BF3AFB /* SecondaryAction.swift in Sources */,
 				DEFACEB526F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
 				DE80A04126EB607600598DC6 /* TempoInterface.swift in Sources */,
@@ -402,6 +407,7 @@
 				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
+				DE5A327426F8938900A3EF26 /* NSBezierPath_extension.swift in Sources */,
 				DE06083126F2395800BF3AFB /* SecondaryAction.swift in Sources */,
 				DEFACEB626F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
 				DE7807CA26EA227E00FC5FAF /* TempoApp.swift in Sources */,

@@ -43,43 +43,48 @@ struct TimerWheel: View {
     
     var body: some View {
         GeometryReader { g in
-            VStack(alignment: .center, spacing: 8) {
-                TimeIndicator(.vertical)
-                    .opacity(visibleWhenNotSearching)
-                HStack(alignment: .center, spacing: 8) {
-                    TimeIndicator(.horizontal)
+            let size = min(g.size.width, g.size.height)
+            HStack(alignment: .center, spacing: 0) {
+                Spacer()
+                VStack(alignment: .center, spacing: 8) {
+                    TimeIndicator(.vertical)
                         .opacity(visibleWhenNotSearching)
-                    ZStack(alignment: .center) {
-                        TempoButton()
-                            .animation(.easeInOut(duration: 0.6))
-                            .scaleEffect(link.connexionStatus == .Connected ? 1.0 : 0.8)
-                            .rotationEffect(link.connexionStatus == .Connected ? .zero : .radians(dial.loading * 2 * .pi - .pi * 1/3))
-                        ForEach(0..<12) { i in
-                            TimeIndicator(.detail)
-                                .transformEffect(.init(translationX: 0, y: (g.size.width - 120) / -2))
-                                .rotationEffect(.init(degrees: Double(i * 30)))
+                    HStack(alignment: .center, spacing: 8) {
+                        TimeIndicator(.horizontal)
+                            .opacity(visibleWhenNotSearching)
+                        ZStack(alignment: .center) {
+                            TempoButton()
+                                .animation(.easeInOut(duration: 0.6))
+                                .scaleEffect(link.connexionStatus == .Connected ? 1.0 : 0.8)
+                                .rotationEffect(link.connexionStatus == .Connected ? .zero : .radians(dial.loading * 2 * .pi - .pi * 1/3))
+                            ForEach(0..<12) { i in
+                                TimeIndicator(.detail)
+                                    .transformEffect(.init(translationX: 0, y: (size - 120) / -2))
+                                    .rotationEffect(.init(degrees: Double(i * 30)))
+                                    .opacity(visibleWhenConnected)
+                                    .animation(.linear(duration: 0.1).delay(0.05 * Double(i)))
+                            }
+                            Circle()
+                                .strokeBorder(Color.tCream, lineWidth: 2)
+                                .background(Circle().fill(Color.tSoil))
+                                .frame(width: 28, height: 28)
+                                .transformEffect(.init(translationX: 0, y: (size - 128) / -2))
+                                .rotationEffect(handleAngle)
                                 .opacity(visibleWhenConnected)
-                                .animation(.linear(duration: 0.1).delay(0.05 * Double(i)))
+                                .animation(.easeInOut(duration: 0.6))
                         }
-                        Circle()
-                            .strokeBorder(Color.tCream, lineWidth: 2)
-                            .background(Circle().fill(Color.tSoil))
-                            .frame(width: 28, height: 28)
-                            .transformEffect(.init(translationX: 0, y: (g.size.width - 128) / -2))
-                            .rotationEffect(handleAngle)
-                            .opacity(visibleWhenConnected)
-                            .animation(.easeInOut(duration: 0.6))
+                        .frame(width: size - 48, height: size - 48)
+                        TimeIndicator(.horizontal)
+                            .opacity(visibleWhenNotSearching)
                     }
-                    .frame(width: g.size.width - 48, height: g.size.width - 48)
-                    TimeIndicator(.horizontal)
+                    .frame(width: size - 48, height: size - 48)
+                    TimeIndicator(.vertical)
                         .opacity(visibleWhenNotSearching)
                 }
-                .frame(width: g.size.width - 48, height: g.size.width - 48)
-                TimeIndicator(.vertical)
-                    .opacity(visibleWhenNotSearching)
+                .frame(width: size, height: size)
+                .gesture(rotationDragGesture(diameter: size))
+                Spacer()
             }
-            .frame(width: g.size.width, height: g.size.width)
-            .gesture(rotationDragGesture(diameter: g.size.width))
         }
         .onAppear { withAnimation(dial.loadingAnimation) { dial.loading = 1 } }
     }

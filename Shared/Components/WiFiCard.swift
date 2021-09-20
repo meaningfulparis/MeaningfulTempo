@@ -19,6 +19,7 @@ struct WiFiCard: View {
             Text(wifiName)
                 .modifier(DetailText(color: .tBlack))
             Spacer()
+            #if os(iOS)
             Button(action: { showTrashConfirmation = true }) {
                 Image("TrashIcon")
                     .resizable()
@@ -36,6 +37,7 @@ struct WiFiCard: View {
                     ]
                 )
             })
+            #endif
         }
         .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 16))
         .background(Color.tWhite)

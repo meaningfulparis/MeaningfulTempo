@@ -44,6 +44,7 @@ struct NewWiFiForm: View {
                             .modifier(HighlightText(color: .tBlue))
                             .padding(.vertical, 8)
                     })
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }

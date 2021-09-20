@@ -18,13 +18,18 @@ struct InputField: View {
             Text(label)
                 .modifier(DetailText())
                 .padding(.leading, 8)
-            Group {
+            HStack {
                 if securedTextField {
                     SecureField("", text: $value)
                 } else {
+                    #if os(iOS)
                     TextField("", text: $value)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
+                    #else
+                    TextField("", text: $value)
+                        .disableAutocorrection(true)
+                    #endif
                 }
             }
             .modifier(DetailText(color: .tBlack))

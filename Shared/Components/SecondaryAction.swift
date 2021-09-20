@@ -38,6 +38,7 @@ struct SecondaryAction: View {
             .padding(.vertical, 16)
             .padding(.horizontal, 32)
         })
+        .buttonStyle(PlainButtonStyle())
         .disabled(useCase == .None)
         .opacity(useCase == .None ? 0 : 1)
         .sheet(isPresented: $link.needHelp, content: { HelpView() })
