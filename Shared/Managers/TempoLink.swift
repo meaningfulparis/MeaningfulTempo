@@ -90,8 +90,8 @@ class TempoLink: ObservableObject {
     
     private func statusUpdate(_ timer:Timer) {
         if connexionStatus == .Searching {
-            finder.lookForTempo()
             print(Date(), " | TRY TO LOOK FOR TEMPO")
+            finder.lookForTempo()
         } else {
             print(Date(), " | NEED STATUS UPDATE")
             interface.getObjectState(handler: animatedStatusUpdate)

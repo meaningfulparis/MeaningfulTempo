@@ -22,7 +22,7 @@ class TempoConfigurator : ObservableObject {
         interface.getKnownWiFiNetworks { result in
             switch result {
             case .success(let networks):
-                withAnimation {
+                DispatchQueue.main.asyncWithAnimation {
                     self.knownWiFiNetworks = networks
                 }
             case .failure(let error):

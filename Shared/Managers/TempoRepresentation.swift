@@ -60,6 +60,7 @@ class TempoDigitalRepresentation: TempoRepresentation {
     }
     
     func synchronizeTo(object:TempoObjectRepresentation) {
+        guard !self.isSynchronizedWith(object) else { return }
         DispatchQueue.main.async {
             self.status = object.status
             self.activity = object.activity
