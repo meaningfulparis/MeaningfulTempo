@@ -28,6 +28,7 @@ struct InputField: View {
                         .disableAutocorrection(true)
                     #else
                     TextField("", text: $value)
+                        .textFieldStyle(PlainTextFieldStyle())
                         .disableAutocorrection(true)
                     #endif
                 }

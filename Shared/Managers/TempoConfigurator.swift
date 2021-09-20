@@ -12,6 +12,7 @@ class TempoConfigurator : ObservableObject {
     struct WiFiNetwork:Identifiable, Decodable {
         let id = UUID()
         let ssid:String
+        let pass:String
     }
     
     @Published var knownWiFiNetworks:[WiFiNetwork] = []
@@ -35,9 +36,14 @@ class TempoConfigurator : ObservableObject {
         print("Trash wifi called \(ssid)")
         interface.trashWiFiNetwork(ssid: ssid) { result in
             switch result {
-                case .success(_):
-                    withAnimation {
-                        self.knownWiFiNetworks.removeAll { $0.ssid == ssid }
+                case .success(let resp):
+                    if resp.success {
+                        DispatchQueue.main.asyncWithAnimation {
+                            self.knownWiFiNetworks.removeAll { $0.ssid == ssid }
+                        }
+                    } else {
+                        print("Failed to remove")
+                        #warning("Error to manage")
                     }
                     break
                 case .failure(let error):
@@ -51,9 +57,14 @@ class TempoConfigurator : ObservableObject {
         print("Connect to \(ssid) with \(password)")
         interface.transferWiFiNetwork(ssid: ssid, password: password) { result in
             switch result {
-                case .success(_):
-                    withAnimation {
-                        self.destinationNetwork = ssid
+                case .success(let resp):
+                    if resp.success {
+                        DispatchQueue.main.asyncWithAnimation {
+                            self.destinationNetwork = ssid
+                        }
+                    } else {
+                        print("Too much data or no more space...")
+                        #warning("Error to manage")
                     }
                     break
                 case .failure(let error):

@@ -25,7 +25,9 @@ struct ConfigurationView: View {
                     }
                     .padding(.horizontal, 8)
                     VStack(spacing: 16) {
-                        NewWiFiForm(connectAction: { (ssid, password) in configurator.connectToWiFi(called: ssid, withPassword: password)  })
+                        if configurator.knownWiFiNetworks.count < 5 {
+                            NewWiFiForm(connectAction: { (ssid, password) in configurator.connectToWiFi(called: ssid, withPassword: password)  })
+                        }
                         ForEach(configurator.knownWiFiNetworks) { network in
                             WiFiCard(
                                 wifiName: network.ssid,

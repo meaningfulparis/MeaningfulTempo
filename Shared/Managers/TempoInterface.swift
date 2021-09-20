@@ -107,7 +107,8 @@ class TempoWiFiInterface {
     }
     
     fileprivate func getRequestURL(ip:String, endpoint:String, data:[String] = []) -> URL? {
-        return URL(string: "http://\(ip):\(TempoConfiguration.port)/\(endpoint)/\(data.joined(separator: ":"))")
+        let parameters = "\(data.joined(separator: ":"))".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        return URL(string: "http://\(ip):\(TempoConfiguration.port)/\(endpoint)/\(parameters)")
     }
     
     fileprivate func sendConfigurationObjectRequest<T:Decodable>(endpoint:String, method:Method, data:[String], handler:@escaping (Result<T, InterfaceError>) -> Void) {
