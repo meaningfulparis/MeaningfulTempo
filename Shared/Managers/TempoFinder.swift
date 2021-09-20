@@ -10,7 +10,6 @@ import Foundation
 protocol TempoFinderDelegate {
     func didFindWaitingConfigurationTempo(ip:String, result: Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>)
     func didFindTempo(ip:String)
-    func tempoNotFound()
 }
 
 class TempoFinder {
@@ -54,7 +53,6 @@ class TempoFinder {
 //            delegate?.didFindTempo(ip: "192.168.1.34")
 //            return
         }
-        self.delegate?.tempoNotFound()
     }
     
     private func lookForWaitingConfigurationTempo() {

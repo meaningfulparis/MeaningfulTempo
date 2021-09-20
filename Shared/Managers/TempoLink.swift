@@ -154,30 +154,25 @@ extension TempoLink : TempoFinderDelegate {
     }
     
     func didFindTempo(ip:String) {
-        print("did find tempo")
+        print("-> did find tempo")
         DispatchQueue.main.asyncWithAnimation {
             self.digitalRepresentation.setUp(ip: ip)
-        }
-        interface.getObjectState { result in
-            switch result {
-            case .success(_):
-                DispatchQueue.main.asyncWithAnimation {
-                    self.objectRepresentation.setUp(ip: ip)
-                    self.objectRepresentation.statusUpdate(result)
-                    self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+            self.interface.getObjectState { result in
+                switch result {
+                case .success(_):
+                    DispatchQueue.main.asyncWithAnimation {
+                        self.objectRepresentation.setUp(ip: ip)
+                        self.objectRepresentation.statusUpdate(result)
+                        self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+                    }
+                case .failure(let error):
+                    print("Fail : \(error.localizedDescription)")
+                    DispatchQueue.main.asyncWithAnimation {
+                        self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
+                    }
                 }
-            case .failure(let error):
-                print("Fail : \(error.localizedDescription)")
-                DispatchQueue.main.asyncWithAnimation {
-                    self.digitalRepresentation.synchronizeTo(object: self.objectRepresentation)
-                }
-                self.tempoNotFound()
             }
         }
-    }
-    
-    func tempoNotFound() {
-//        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1, execute: finder.lookForTempo)
     }
     
 }

@@ -12,23 +12,19 @@ class TempoObjectRepresentation: TempoRepresentation {
     func statusUpdate(_ result:Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
         switch result {
         case .success(let resp):
-            DispatchQueue.main.async {
-                self.status = .Available
-                self.activity = resp.activity
-                self.timerDuration = resp.timerDuration
-                if let relativeStart = resp.timerRelativeStart {
-                    self.timerStart = Date(timeIntervalSinceNow: relativeStart / -1000)
-                } else {
-                    self.timerStart = nil
-                }
+            self.status = .Available
+            self.activity = resp.activity
+            self.timerDuration = resp.timerDuration
+            if let relativeStart = resp.timerRelativeStart {
+                self.timerStart = Date(timeIntervalSinceNow: relativeStart / -1000)
+            } else {
+                self.timerStart = nil
             }
         case .failure(let error):
-            DispatchQueue.main.async {
-                if self.status == .Lost {
-                    self.status = .NotFound
-                } else {
-                    self.status = .Lost
-                }
+            if self.status == .Lost {
+                self.status = .NotFound
+            } else {
+                self.status = .Lost
             }
             print("Error : \(error.localizedDescription)")
         }
