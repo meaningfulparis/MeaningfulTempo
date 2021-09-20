@@ -5,7 +5,7 @@
 //  Created by Romain Penchenat on 20/09/2021.
 //
 
-#if targetEnvironment(macCatalyst)
+#if os(macOS)
 import AppKit
 
 extension NSBezierPath {
