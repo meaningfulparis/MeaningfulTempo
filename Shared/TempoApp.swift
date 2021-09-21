@@ -29,7 +29,9 @@ struct TempoApp: App {
             .onChange(of: scenePhase) { link.scenePhase = $0 }
             .environmentObject(link)
             .background(Color.tCream.edgesIgnoringSafeArea(.all))
+            #if os(macOS)
             .frame(minWidth: 720, minHeight: 720)
+            #endif
         }
         #if os(macOS)
         .windowStyle(HiddenTitleBarWindowStyle())
