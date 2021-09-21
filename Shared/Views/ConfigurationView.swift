@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConfigurationView: View {
     
-    @StateObject private var configurator = TempoConfigurator()
+    @StateObject var configurator:TempoConfigurator
     
     var body: some View {
         if configurator.destinationNetwork != nil {
@@ -47,6 +47,6 @@ struct ConfigurationView: View {
 
 struct ConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfigurationView()
+        ConfigurationView(configurator: TempoConfigurator(interface: TempoInterface(digitalRepresentation: TempoDigitalRepresentation())))
     }
 }

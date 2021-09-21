@@ -14,6 +14,7 @@ class TempoLink: ObservableObject {
         case Searching, Connecting, Connected
     }
     
+    var scenePhase:ScenePhase = .active
     var connexionStatus: ConnexionStatus {
         if objectRepresentation.status == .Available {
             return .Connected
@@ -23,7 +24,13 @@ class TempoLink: ObservableObject {
             return .Searching
         }
     }
-    var viewMode: TempoDigitalRepresentation.ViewMode { digitalRepresentation.viewMode }
+    var viewMode: TempoDigitalRepresentation.ViewMode {
+        if needConfiguration && digitalRepresentation.viewMode == .Settings && connexionStatus == .Connected {
+            return .WifiConfiguration
+        } else {
+            return digitalRepresentation.viewMode
+        }
+    }
     var activity: TempoRepresentation.Activity { digitalRepresentation.activity }
     var timerDuration: Int { digitalRepresentation.timerDuration }
     var isTimerExceeded: Bool {
@@ -59,13 +66,14 @@ class TempoLink: ObservableObject {
         }
     }
     
+    @Published var needConfiguration:Bool = false
     @Published var needHelp:Bool = false
     @Published private var objectRepresentation = TempoObjectRepresentation()
     private var objectRepresentationCancellable:AnyCancellable? = nil
     @Published private var digitalRepresentation = TempoDigitalRepresentation()
     private var digitalRepresentationCancellable:AnyCancellable? = nil
     
-    private lazy var interface = TempoInterface(digitalRepresentation: digitalRepresentation)
+    lazy var interface = TempoInterface(digitalRepresentation: digitalRepresentation)
     private lazy var finder = TempoFinder(withInterface: interface)
     private var statusUpdateTimer:Timer?
     
@@ -89,6 +97,7 @@ class TempoLink: ObservableObject {
     }
     
     private func statusUpdate(_ timer:Timer) {
+        guard scenePhase == .active else { return }
         if connexionStatus == .Searching {
             print(Date(), " | TRY TO LOOK FOR TEMPO")
             finder.lookForTempo()
@@ -108,7 +117,7 @@ class TempoLink: ObservableObject {
         UIImpactFeedbackGenerator(style: newTimerDuration % 5 == 0 ? .heavy : .light).impactOccurred()
         #endif
         digitalRepresentation.timerDuration = newTimerDuration
-        guard newTimerDuration.isMultiple(of: 6) || forcing else { return }
+        guard newTimerDuration.isMultiple(of: 5) || forcing else { return }
         pushUpdateTimer(newTimerDuration)
     }
     

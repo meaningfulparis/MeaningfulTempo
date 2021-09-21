@@ -43,7 +43,7 @@ struct TimerWheel: View {
     
     var body: some View {
         GeometryReader { g in
-            let size = min(g.size.width, g.size.height)
+            let size = min(400, min(g.size.width, g.size.height))
             HStack(alignment: .center, spacing: 0) {
                 Spacer()
                 VStack(alignment: .center, spacing: 8) {

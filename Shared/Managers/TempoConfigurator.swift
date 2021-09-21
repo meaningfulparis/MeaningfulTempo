@@ -17,9 +17,10 @@ class TempoConfigurator : ObservableObject {
     
     @Published var knownWiFiNetworks:[WiFiNetwork] = []
     @Published var destinationNetwork:String? = nil
-    private let interface = TempoWiFiInterface()
+    var interface:TempoInterface
     
-    init() {
+    init(interface tempoInterface:TempoInterface) {
+        interface = tempoInterface
         interface.getKnownWiFiNetworks { result in
             switch result {
             case .success(let networks):

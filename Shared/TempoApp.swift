@@ -11,6 +11,7 @@ import SwiftUI
 struct TempoApp: App {
     
     @StateObject var link = TempoLink()
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -19,14 +20,19 @@ struct TempoApp: App {
                 Spacer()
                 switch link.viewMode {
                 case .WifiConfiguration:
-                    ConfigurationView()
+                    ConfigurationView(configurator: TempoConfigurator(interface: link.interface))
                 default:
                     MainView()
                 }
                 Spacer()
             }
+            .onChange(of: scenePhase) { link.scenePhase = $0 }
             .environmentObject(link)
             .background(Color.tCream.edgesIgnoringSafeArea(.all))
+            .frame(minWidth: 720, minHeight: 720)
         }
+        #if os(macOS)
+        .windowStyle(HiddenTitleBarWindowStyle())
+        #endif
     }
 }

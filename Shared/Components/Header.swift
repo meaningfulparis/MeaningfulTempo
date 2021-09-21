@@ -12,30 +12,37 @@ struct Header: View {
     @EnvironmentObject private var link:TempoLink
     #if os(iOS)
     @Environment(\.safeAreaInsets) private var safeAreaInsets
-    private var topMargin: CGFloat { safeAreaInsets.top }
+    private var padding: EdgeInsets {
+        return EdgeInsets(top: 8 + safeAreaInsets.top, leading: 24, bottom: 16, trailing: 24)
+    }
+    private var margin = EdgeInsets()
     #else
-    private var topMargin:CGFloat = 32
+    private var padding = EdgeInsets(top: 16, leading: 24, bottom: 16, trailing: 24)
+    private var margin = EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 16)
     #endif
     
     var connexionStatusText: String {
+        if link.viewMode == .WifiConfiguration {
+            return "Paramètrage de Tempo"
+        }
         switch link.connexionStatus {
         case .Connected:
             return "Tempo connecté"
         case .Connecting:
             return "Connexion à Tempo..."
         case .Searching:
-            if link.viewMode == .WifiConfiguration {
-                return "Paramètrage de Tempo"
-            } else {
-                return "Recherche de Tempo..."
-            }
+            return "Recherche de Tempo..."
         }
     }
     
     var body: some View {
         HStack(alignment: .center) {
-            Image("SettingsIcon")
-                .frame(width: 44, height: 44)
+            Button(action: { withAnimation { link.needConfiguration.toggle()} }) {
+                Image("SettingsIcon")
+                    .frame(width: 44, height: 44)
+            }
+            .buttonStyle(PlainButtonStyle())
+            .disabled(link.connexionStatus != .Connected || ![.Settings, .WifiConfiguration].contains(link.viewMode))
             Spacer()
             Text(connexionStatusText)
                 .modifier(HighlightText())
@@ -43,8 +50,9 @@ struct Header: View {
             (link.connexionStatus == .Connected ? Image("TempoConnected") : Image("TempoNotFound"))
                 .frame(width: 44, height: 44)
         }
-        .padding(EdgeInsets(top: 8 + topMargin, leading: 24, bottom: 16, trailing: 24))
+        .padding(padding)
         .background(backgroundShape)
+        .padding(margin)
         .edgesIgnoringSafeArea(.top)
     }
     

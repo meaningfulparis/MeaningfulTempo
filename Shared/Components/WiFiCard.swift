@@ -42,6 +42,11 @@ struct WiFiCard: View {
         .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 16))
         .background(Color.tWhite)
         .cornerRadius(24)
+        .contextMenu {
+            Button(action: { trashAction(wifiName) }) {
+                Text("Oublier le réseau")
+            }
+        }
 //        .onTapGesture {
 //            connectAction(wifiName, nil)
 //        }
