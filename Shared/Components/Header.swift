@@ -34,7 +34,7 @@ struct Header: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Image("BurgerMenu")
+            Image("SettingsIcon")
                 .frame(width: 44, height: 44)
             Spacer()
             Text(connexionStatusText)

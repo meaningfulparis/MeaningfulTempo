@@ -100,12 +100,19 @@ class TempoLink: ObservableObject {
     
     func updateTimer(dialValue:Double, forcing:Bool = false) {
         let newTimerDuration = Int(dialValue / .pi * 30)
-        guard newTimerDuration != digitalRepresentation.timerDuration else { return }
-        print("Update timer \(dialValue)")
+        guard newTimerDuration != digitalRepresentation.timerDuration else {
+            if forcing { pushUpdateTimer(newTimerDuration) }
+            return
+        }
         #if os(iOS)
         UIImpactFeedbackGenerator(style: newTimerDuration % 5 == 0 ? .heavy : .light).impactOccurred()
         #endif
         digitalRepresentation.timerDuration = newTimerDuration
+        guard newTimerDuration.isMultiple(of: 6) || forcing else { return }
+        pushUpdateTimer(newTimerDuration)
+    }
+    
+    private func pushUpdateTimer(_ newTimerDuration:Int) {
         interface.setTimer(duration: newTimerDuration) { result in
             DispatchQueue.main.async {
                 self.objectRepresentation.statusUpdate(result)
