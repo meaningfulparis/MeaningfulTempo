@@ -21,7 +21,7 @@ struct Header: View {
     private var margin = EdgeInsets(top: 40, leading: 16, bottom: 0, trailing: 16)
     #endif
     
-    var connexionStatusText: String {
+    private var connexionStatusText: String {
         if link.viewMode == .WifiConfiguration {
             return "Paramètrage de Tempo"
         }
@@ -35,17 +35,25 @@ struct Header: View {
         }
     }
     
+    private var settingsAreAvailable: Bool {
+        link.connexionStatus == .Connected && [.Settings, .WifiConfiguration].contains(link.viewMode)
+    }
+    
+    
     var body: some View {
         HStack(alignment: .center) {
             Button(action: { withAnimation { link.needConfiguration.toggle()} }) {
                 Image("SettingsIcon")
                     .frame(width: 44, height: 44)
+                    .rotationEffect(link.viewMode == .WifiConfiguration ? .degrees(-90) : .zero)
             }
             .buttonStyle(PlainButtonStyle())
-            .disabled(link.connexionStatus != .Connected || ![.Settings, .WifiConfiguration].contains(link.viewMode))
+            .disabled(!settingsAreAvailable)
+            .opacity(settingsAreAvailable ? 1 : 0.5)
             Spacer()
             Text(connexionStatusText)
                 .modifier(HighlightText())
+                .animation(.none)
             Spacer()
             (link.connexionStatus == .Connected ? Image("TempoConnected") : Image("TempoNotFound"))
                 .frame(width: 44, height: 44)
