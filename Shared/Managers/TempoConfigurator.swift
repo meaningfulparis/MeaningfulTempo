@@ -64,11 +64,12 @@ class TempoConfigurator : ObservableObject {
     
     func connectToWiFi(called ssid:String, withPassword password:String = "") {
         print("Connect to \(ssid) with \(password)")
+        isLoading = true
         interface.transferWiFiNetwork(ssid: ssid, password: password) { result in
             switch result {
                 case .success(let resp):
                     guard resp.success else {
-                        self.showError("Impossible d'ajouter ce réseau WiFi", withDetails: "Tempo peut garder un maximum de 5 réseaux WiFi en mémoire.")
+                        self.showError("Impossible d'ajouter ce réseau WiFi", withDetails: "Tempo ne peut pas sauvegarder des réseaux WiFi dont les identifiants pésent plus de 50 bits. Réduisez le nom ou le mot de passe du réseau.")
                         return
                     }
                     DispatchQueue.main.asyncWithAnimation {

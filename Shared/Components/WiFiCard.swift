@@ -9,15 +9,19 @@ import SwiftUI
 
 struct WiFiCard: View {
     
-    var wifiName:String
+    var network:TempoConfigurator.WiFiNetwork
     @State var showTrashConfirmation:Bool = false
     var trashAction:(String) -> Void
     var connectAction:(String) -> Void
     
     var body: some View {
         HStack {
-            Text(wifiName)
-                .modifier(DetailText(color: .tBlack))
+            VStack(alignment: .leading, spacing: 4) {
+                Text(network.ssid)
+                    .modifier(DetailText(color: .tBlack))
+                Text(network.pass)
+                    .modifier(DetailText())
+            }
             Spacer()
             #if os(iOS)
             Button(action: { showTrashConfirmation = true }) {
@@ -28,10 +32,10 @@ struct WiFiCard: View {
             }
             .actionSheet(isPresented: $showTrashConfirmation, content: {
                 ActionSheet(
-                    title: Text("Oublier le réseau \(wifiName) ?"),
+                    title: Text("Oublier le réseau \(network.ssid) ?"),
                     buttons: [
                         .default(Text("Oublier le réseau"), action: {
-                            trashAction(wifiName)
+                            trashAction(network.ssid)
                         }),
                         .cancel(Text("Annuler"))
                     ]
@@ -39,11 +43,11 @@ struct WiFiCard: View {
             })
             #endif
         }
-        .padding(EdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 16))
+        .padding(EdgeInsets(top: 16, leading: 24, bottom: 16, trailing: 16))
         .background(Color.tWhite)
         .cornerRadius(24)
         .contextMenu {
-            Button(action: { trashAction(wifiName) }) {
+            Button(action: { trashAction(network.ssid) }) {
                 Text("Oublier le réseau")
             }
         }
@@ -56,7 +60,7 @@ struct WiFiCard: View {
 struct WiFiCard_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WiFiCard(wifiName: "Meaningful", trashAction: { _ in }, connectAction: { _  in })
+            WiFiCard(network: TempoConfigurator.WiFiNetwork(ssid: "Meaningful", pass: "Meaningful_"), trashAction: { _ in }, connectAction: { _  in })
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 100)

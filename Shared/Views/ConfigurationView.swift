@@ -31,7 +31,7 @@ struct ConfigurationView: View {
                             }
                             ForEach(configurator.knownWiFiNetworks) { network in
                                 WiFiCard(
-                                    wifiName: network.ssid,
+                                    network: network,
                                     trashAction: configurator.trashWiFi,
                                     connectAction: { (ssid) in configurator.connectToWiFi(called: ssid)  }
                                 )
