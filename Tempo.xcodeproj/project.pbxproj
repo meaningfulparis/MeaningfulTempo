@@ -61,6 +61,8 @@
 		DE8E8FDA26F4CCA700479325 /* ConfigurationSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */; };
 		DE8E8FDC26F4D2E200479325 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FDB26F4D2E200479325 /* HelpView.swift */; };
 		DE8E8FDD26F4D2E200479325 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8E8FDB26F4D2E200479325 /* HelpView.swift */; };
+		DEE50E6D26FA0BE6009C9CB6 /* ErrorToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE50E6C26FA0BE6009C9CB6 /* ErrorToast.swift */; };
+		DEE50E6E26FA0BE6009C9CB6 /* ErrorToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE50E6C26FA0BE6009C9CB6 /* ErrorToast.swift */; };
 		DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */; };
 		DEE6960426EB918300BB1EC1 /* TempoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */; };
@@ -103,6 +105,7 @@
 		DE8E8FD526F4C7DC00479325 /* TempoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoConfigurator.swift; sourceTree = "<group>"; };
 		DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationSuccessScreen.swift; sourceTree = "<group>"; };
 		DE8E8FDB26F4D2E200479325 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		DEE50E6C26FA0BE6009C9CB6 /* ErrorToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorToast.swift; sourceTree = "<group>"; };
 		DEE6960026EB847B00BB1EC1 /* TempoFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoFinder.swift; sourceTree = "<group>"; };
 		DEE6960326EB918300BB1EC1 /* TempoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempoRepresentation.swift; sourceTree = "<group>"; };
 		DEFACEB426F0EC42008A1D79 /* DispatchQueue_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue_extension.swift; sourceTree = "<group>"; };
@@ -189,6 +192,7 @@
 				DE8E8FCF26F4944200479325 /* NewWiFiForm.swift */,
 				DE8E8FD226F4952E00479325 /* InputField.swift */,
 				DE8E8FD826F4CCA700479325 /* ConfigurationSuccessScreen.swift */,
+				DEE50E6C26FA0BE6009C9CB6 /* ErrorToast.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -373,6 +377,7 @@
 				DE8B789E26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960126EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807E926EA47CB00FC5FAF /* TimerDisplay.swift in Sources */,
+				DEE50E6D26FA0BE6009C9CB6 /* ErrorToast.swift in Sources */,
 				DE5A327326F8938900A3EF26 /* NSBezierPath_extension.swift in Sources */,
 				DE06083026F2395800BF3AFB /* SecondaryAction.swift in Sources */,
 				DEFACEB526F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
@@ -407,6 +412,7 @@
 				DE8B789F26F1F52A0029045B /* Fonts.swift in Sources */,
 				DEE6960226EB847B00BB1EC1 /* TempoFinder.swift in Sources */,
 				DE7807EE26EA4A5E00FC5FAF /* TimeIndicator.swift in Sources */,
+				DEE50E6E26FA0BE6009C9CB6 /* ErrorToast.swift in Sources */,
 				DE5A327426F8938900A3EF26 /* NSBezierPath_extension.swift in Sources */,
 				DE06083126F2395800BF3AFB /* SecondaryAction.swift in Sources */,
 				DEFACEB626F0EC42008A1D79 /* DispatchQueue_extension.swift in Sources */,
