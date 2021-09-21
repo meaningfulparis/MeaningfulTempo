@@ -24,7 +24,7 @@ struct TimerWheel: View {
                 _angle = min(Angle(radians: 2 * .pi), max(Angle.zero, Angle(radians: _angle.radians - smallestDelta)))
             }
         }
-        private var _angle:Angle = .zero
+        private var _angle:Angle = Angle(radians: .pi)
         var loading: Double = 0
         let loadingAnimation = Animation.easeInOut(duration: 10).repeatForever()
     }
@@ -71,7 +71,7 @@ struct TimerWheel: View {
                                 .transformEffect(.init(translationX: 0, y: (size - 128) / -2))
                                 .rotationEffect(handleAngle)
                                 .opacity(visibleWhenConnected)
-                                .animation(.easeInOut(duration: 0.6))
+                                .animation(.easeInOut(duration: isDraggingEnabled ? 0.2 : 0.6))
                         }
                         .frame(width: size - 48, height: size - 48)
                         TimeIndicator(.horizontal)
@@ -97,9 +97,10 @@ struct TimerWheel: View {
                 dial.angle = rotationAngle(of: value.location, around: center)
                 link.updateTimer(dialValue: dial.angle.radians)
             }
-            .onEnded { _ in
+            .onEnded { value in
                 guard isDraggingEnabled else { return }
-                link.updateTimer(dialValue: dial.angle.radians)
+                dial.angle = rotationAngle(of: value.location, around: center)
+                link.updateTimer(dialValue: dial.angle.radians, forcing: true)
             }
     }
 

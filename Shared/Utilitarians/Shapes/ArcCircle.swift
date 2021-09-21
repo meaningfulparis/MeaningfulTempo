@@ -24,11 +24,12 @@ struct ArcCircle: Shape {
         #if os(iOS)
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startRadian, endAngle: endRadian, clockwise: true)
         path.addLine(to: center)
+        path.close()
         #else
         let path = NSBezierPath()
         path.move(to: center)
         path.line(to: center)
-        path.appendArc(withCenter: center, radius: radius, startAngle: start * 360, endAngle: end * 360)
+        path.appendArc(withCenter: center, radius: radius, startAngle: start * 360 - 90, endAngle: end * 360 - 90)
         path.line(to: center)
         #endif
         return Path(path.cgPath)
@@ -39,7 +40,9 @@ struct ArcCircle_Previews: PreviewProvider {
     
     static var previews: some View {
         ArcCircle(start: 0, end: 0.6)
+//            .stroke()
             .fill(Color.red)
+            .shadow(color: .tBlack, radius: 10, x: 0, y: 0)
             .frame(width: 100, height: 100, alignment: .center)
             .background(Color.blue)
     }

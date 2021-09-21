@@ -40,7 +40,7 @@ struct TempoButton: View {
     var body: some View {
         ZStack {
             ArcCircle(start: 0, end: shadowEnd)
-                .fill(Color.clear)
+                .fill(link.connexionStatus == .Connected ? Color.tWhite : Color.tCream)
                 .shadow(color: shadowColor.opacity(0.8), radius: link.connexionStatus == .Connecting ? 90 : 60, x: 0, y: 0)
                 .transformEffect(.init(translationX: 0, y: link.viewMode == .Settings ? 0 : 40))
                 .opacity(link.viewMode == .RunningTimer ? 0.2 + abs(link.timerProgression * 0.8) : 1)

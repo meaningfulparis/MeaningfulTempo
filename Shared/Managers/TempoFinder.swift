@@ -39,12 +39,12 @@ class TempoFinder {
     }
     
     private func lookForAvailableTempoOnWifi() {
-//        print("||| Look for tempo |||")
+        print("-> Look for available tempo on wifi")
         for i in 0..<255 {
             let ip = "192.168.1.\(i)"
-//            if let hostName = self.getHostName(ip), hostName != ip {
-//                print("----> ", hostName)
-//            }
+            if let hostName = self.getHostName(ip), hostName != ip {
+                print("----> ", hostName)
+            }
             if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
                 self.didFindTempo()
                 self.delegate?.didFindTempo(ip: ip)
