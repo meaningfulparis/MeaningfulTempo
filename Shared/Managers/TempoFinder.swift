@@ -45,7 +45,7 @@ class TempoFinder {
             if let hostName = self.getHostName(ip), hostName != ip {
                 print("----> ", hostName)
             }
-            if let hostName = self.getHostName(ip), hostName.contains(self.tempoHostName) {
+            if let hostName = self.getHostName(ip), hostName.lowercased().contains(self.tempoHostName) {
                 self.didFindTempo()
                 self.delegate?.didFindTempo(ip: ip)
                 return

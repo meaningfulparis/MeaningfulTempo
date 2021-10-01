@@ -557,7 +557,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.Tempo;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
 				PRODUCT_NAME = Tempo;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -582,7 +583,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.Tempo;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
 				PRODUCT_NAME = Tempo;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -610,7 +612,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.Tempo;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
 				PRODUCT_NAME = Tempo;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -635,7 +638,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.Tempo;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
 				PRODUCT_NAME = Tempo;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
