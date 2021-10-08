@@ -85,7 +85,7 @@ class TempoLink: ObservableObject {
         digitalRepresentationCancellable = digitalRepresentation.objectWillChange.sink(receiveValue: { [weak self] (_) in
             self?.objectWillChange.send()
         })
-        statusUpdateTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: self.statusUpdate)
+        statusUpdateTimer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: self.statusUpdate)
         statusUpdateTimer?.fire()
     }
     
@@ -107,29 +107,21 @@ class TempoLink: ObservableObject {
         }
     }
     
-    func updateTimer(dialValue:Double, lastUpdate:Bool = false) {
+    func updateTimer(dialValue:Double, pushToObject:Bool = false) {
         let newTimerDuration = Int(dialValue / .pi * 30)
-        guard newTimerDuration != digitalRepresentation.timerDuration else {
-            if lastUpdate { pushUpdateTimer(newTimerDuration, lastUpdate: lastUpdate) }
-            return
-        }
+        digitalRepresentation.isSettingTimer = true
         #if os(iOS)
         UIImpactFeedbackGenerator(style: newTimerDuration % 5 == 0 ? .heavy : .light).impactOccurred()
         #endif
         digitalRepresentation.timerDuration = newTimerDuration
-        guard newTimerDuration.isMultiple(of: 5) || lastUpdate else { return }
-        pushUpdateTimer(newTimerDuration, lastUpdate: lastUpdate)
+        guard pushToObject else { return }
+        pushUpdateTimer(newTimerDuration)
     }
     
-    private func pushUpdateTimer(_ newTimerDuration:Int, lastUpdate:Bool) {
+    private func pushUpdateTimer(_ newTimerDuration:Int) {
         interface.setTimer(duration: newTimerDuration) { result in
-            if lastUpdate {
-                self.animatedStatusUpdate(result: result)
-            } else {
-                DispatchQueue.main.async {
-                    self.objectRepresentation.statusUpdate(result)
-                }
-            }
+            self.digitalRepresentation.isSettingTimer = false
+            self.animatedStatusUpdate(result: result)
         }
     }
     

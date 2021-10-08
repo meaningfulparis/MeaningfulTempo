@@ -41,6 +41,8 @@ class TempoDigitalRepresentation: TempoRepresentation {
         return Date().distance(to: timerEnd)
     }
     
+    var isSettingTimer:Bool = false
+    
     private var timer:Timer?
     
     override init() {
@@ -57,6 +59,7 @@ class TempoDigitalRepresentation: TempoRepresentation {
     
     func synchronizeTo(object:TempoObjectRepresentation) {
         guard !self.isSynchronizedWith(object) else { return }
+        guard !isSettingTimer else { return }
         DispatchQueue.main.async {
             self.status = object.status
             self.activity = object.activity

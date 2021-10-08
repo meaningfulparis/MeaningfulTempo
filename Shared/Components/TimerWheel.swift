@@ -100,7 +100,7 @@ struct TimerWheel: View {
             .onEnded { value in
                 guard isDraggingEnabled else { return }
                 dial.angle = rotationAngle(of: value.location, around: center)
-                link.updateTimer(dialValue: dial.angle.radians, lastUpdate: true)
+                link.updateTimer(dialValue: dial.angle.radians, pushToObject: true)
             }
     }
 
