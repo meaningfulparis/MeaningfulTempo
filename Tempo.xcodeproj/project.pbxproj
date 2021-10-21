@@ -549,7 +549,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tempo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AU9T7HA2AB;
+				DEVELOPMENT_TEAM = 2F8WG4FHXB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -558,7 +558,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.meaningful.tempo-app";
 				PRODUCT_NAME = Tempo;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -575,7 +575,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tempo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AU9T7HA2AB;
+				DEVELOPMENT_TEAM = 2F8WG4FHXB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -584,7 +584,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.meaningful.tempo-app";
 				PRODUCT_NAME = Tempo;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -603,7 +603,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = AU9T7HA2AB;
+				DEVELOPMENT_TEAM = 2F8WG4FHXB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -613,7 +613,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.meaningful.tempo-app";
 				PRODUCT_NAME = Tempo;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -629,7 +629,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = AU9T7HA2AB;
+				DEVELOPMENT_TEAM = 2F8WG4FHXB;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -639,7 +639,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 0.2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = fr.meaningful.tempobymeaningful;
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.meaningful.tempo-app";
 				PRODUCT_NAME = Tempo;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
