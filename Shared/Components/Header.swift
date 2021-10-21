@@ -27,7 +27,8 @@ struct Header: View {
         }
         switch link.connexionStatus {
         case .Connected:
-            return "Tempo connecté"
+            let battery = link.battery != nil ? " (\(link.battery!)%)" : ""
+            return "Tempo connecté\(battery)"
         case .Connecting:
             return "Connexion à Tempo..."
         case .Searching:

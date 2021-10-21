@@ -9,6 +9,8 @@ import Foundation
 
 class TempoObjectRepresentation: TempoRepresentation {
     
+    @Published var battery:Int? = nil
+    
     func statusUpdate(_ result:Result<TempoInterface.Response.Default, TempoInterface.InterfaceError>) {
         switch result {
         case .success(let resp):
@@ -20,6 +22,7 @@ class TempoObjectRepresentation: TempoRepresentation {
             } else {
                 self.timerStart = nil
             }
+            self.battery = resp.battery
         case .failure(let error):
             if self.status == .Lost {
                 self.status = .NotFound

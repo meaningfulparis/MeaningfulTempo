@@ -31,6 +31,7 @@ class TempoLink: ObservableObject {
             return digitalRepresentation.viewMode
         }
     }
+    var battery: Int? { objectRepresentation.battery }
     var activity: TempoRepresentation.Activity { digitalRepresentation.activity }
     var timerDuration: Int { digitalRepresentation.timerDuration }
     var isTimerExceeded: Bool {
