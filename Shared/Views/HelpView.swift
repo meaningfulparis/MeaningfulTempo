@@ -31,19 +31,20 @@ struct HelpView: View {
                 VStack(alignment: .leading, spacing: 40) {
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Paramétrer Tempo").modifier(HighlightText())
-                        Text("1. Connectez-vous au réseau WiFi ouvert nommé “TempoConfiguration”.").modifier(DetailText())
+                        Text("Lorsque Tempo s'illumine en vert, il attend que vous le configurez... Donnez lui les clés de votre réseau en suivant ces 3 étapes. ").modifier(DetailText())
+                        Text("1. Connectez-vous au réseau WiFi ouvert nommé “TempoByMeaningful”.").modifier(DetailText())
                         Text("2. Ouvrez l’app Tempo.").modifier(DetailText())
                         Text("3. Transmettez les identifiants de votre réseau Wifi à votre Tempo.").modifier(DetailText())
                     }
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Régler les problèmes de connexion").modifier(HighlightText())
                         Text("- Vérifiez que votre appareil est bien connecté sur le même réseau WiFi que Tempo.").modifier(DetailText())
-                        Text("- Vérifiez que Tempo est correctement branché.").modifier(DetailText())
-                        Text("- Redémarrez Tempo en appuyant 10s sur le bouton principal.").modifier(DetailText())
+                        Text("- Vérifiez que Tempo s'illumine en blanc. Si Tempo est bleu ou violet, il est en train de se connecter au réseau WiFi le plus proche.").modifier(DetailText())
+                        Text("- Forcez le redémarrage de Tempo en le branchant puis en le débranchant 3s après.").modifier(DetailText())
                     }
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Assistance technique").modifier(HighlightText())
-                        Text("Oupsi, doupsi ! Me fâchez pas svp...").modifier(DetailText())
+                        Text("Le développeur n'a pas souhaité divulgé son identité afin d'éviter des agressions non désirées. Merci de vous débrouiller avec le propriétaire de ce compte Apple pour régler vos soucis. Cependant, nous ferons notre possible afin que Tempo soit heureux. Nous vous recommandons d'ailleurs de réguliérement le sortir au grand air : sur les falaises d'Étretat, au sommet du Mont Blanc, dans la campagne limougeaude, dans les forêts de Bourgogne ou sur la dune du pilat. Notre service client ne pourra pas vous aider si vous ne respectez pas les besoins primaires de ce tendre sablier. Pensez également à ses allergies : gluten, doliprane, bananes et pains au chocolat... Si il s'approche d'une des ces substances nocives, il faudra être réactif ! Trouvez une bonne boulangerie rapidement puis achetez une belle et savoureuse chocolatine. Oui, il raffole des chocolatines et celles-ci peuvent résoudrent la pluspart de ses caprices.").modifier(DetailText())
                     }
                 }
                 .padding(.horizontal, 24)

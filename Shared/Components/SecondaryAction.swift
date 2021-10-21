@@ -18,7 +18,7 @@ struct SecondaryAction: View {
     private var useCase:UseCase {
         if link.viewMode == .RunningTimer {
             return .PlayAgain
-        } else if link.connexionStatus == .Searching {
+        } else if link.connexionStatus == .Searching || link.connexionStatus == .Connecting {
             return .Help
         } else {
             return .None
@@ -28,7 +28,7 @@ struct SecondaryAction: View {
     var body: some View {
         Button(action: buttonAction, label: {
             HStack(alignment: .top, spacing: 8) {
-                Image( useCase == .Help ? "HelpIcon" : "PlayButton")
+                Image(useCase == .Help ? "HelpIcon" : "PlayButton")
                     .resizable()
                     .frame(width: 16, height: 16)
                     .foregroundColor(.tSoil)
@@ -41,7 +41,12 @@ struct SecondaryAction: View {
         .buttonStyle(PlainButtonStyle())
         .disabled(useCase == .None)
         .opacity(useCase == .None ? 0 : 1)
-        .sheet(isPresented: $link.needHelp, content: { HelpView() })
+        .sheet(isPresented: $link.needHelp) {
+            HelpView()
+                #if os(macOS)
+                .frame(minWidth: 600, idealWidth: 600, maxWidth: 600, minHeight: 600, idealHeight: 600, maxHeight: 600)
+                #endif
+        }
     }
     
     private func buttonAction() {

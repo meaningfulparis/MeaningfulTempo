@@ -23,7 +23,7 @@ struct ConfigurationSuccessScreen: View {
             }
             .multilineTextAlignment(.center)
             .padding(.horizontal, 24)
-            Button(action: link.restart) {
+            Button(action: restart) {
                 Text("J’ai rejoins Tempo")
                     .modifier(HighlightText(color: .tBlue))
                     .padding(.all, 24)
@@ -32,6 +32,11 @@ struct ConfigurationSuccessScreen: View {
             }
             .buttonStyle(PlainButtonStyle())
         }
+    }
+    
+    private func restart() {
+        link.restart()
+        ssid = nil
     }
     
 }

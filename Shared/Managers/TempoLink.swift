@@ -91,6 +91,7 @@ class TempoLink: ObservableObject {
     
     func restart() {
         print("Restart")
+        needConfiguration = false
         digitalRepresentation.reinitialize()
         objectRepresentation.reinitialize()
         statusUpdateTimer?.fire()
