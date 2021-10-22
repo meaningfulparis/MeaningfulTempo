@@ -27,13 +27,18 @@ struct Header: View {
         }
         switch link.connexionStatus {
         case .Connected:
-            let battery = link.battery != nil ? " (\(link.battery!)%)" : ""
-            return "Tempo connecté\(battery)"
+            return "Tempo connecté"
         case .Connecting:
             return "Connexion à Tempo..."
         case .Searching:
             return "Recherche de Tempo..."
         }
+    }
+    private var batteryStatus: String? {
+        guard let battery = link.battery else {
+            return nil
+        }
+        return "\(battery)% de batterie"
     }
     
     private var settingsAreAvailable: Bool {
@@ -52,9 +57,15 @@ struct Header: View {
             .disabled(!settingsAreAvailable)
             .opacity(settingsAreAvailable ? 1 : 0.5)
             Spacer()
-            Text(connexionStatusText)
-                .modifier(HighlightText())
-                .animation(.none)
+            VStack(alignment: .center, spacing: 4) {
+                Text(connexionStatusText)
+                    .modifier(HighlightText())
+                if let batteryStatus = batteryStatus {
+                    Text(batteryStatus)
+                        .modifier(DetailText())
+                }
+            }
+            .animation(.none)
             Spacer()
             (link.connexionStatus == .Connected ? Image("TempoConnected") : Image("TempoNotFound"))
                 .frame(width: 44, height: 44)
